@@ -1,0 +1,239 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track,
+.special-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb,
+.special-scrollbar::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.special-scrollbar::-webkit-scrollbar-thumb {
+  background: #3535353d;
+}
+
+.special-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .div-center {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.text-shadow-effect {
+  -webkit-text-stroke: "1px black";
+  text-shadow: "2px 4px 6px rgba(0, 0, 0, 0.4)";
+}
+
+@layer components {
+  .navItem {
+    @apply fixed  top-[96px] left-0 bottom-0 px-9 py-5 max-sm:px-4  transform transition-transform duration-700 ease-in-out bg-white z-30 w-full;
+  }
+
+  .section-container {
+    @apply px-[100px] max-xlg:px-[50px] max-xslg:px-9 max-sm:px-4 relative max-xslg:top-[96px] mt-[100px] max-slg:mt-[50px];
+  }
+
+  .bg-text {
+    @apply bg-gradient-to-b from-black  to-[#001E80] text-transparent bg-clip-text text-shadow-effect;
+  }
+
+  .bg-text-r {
+    @apply bg-gradient-to-r from-black  to-[#001E80] text-transparent bg-clip-text;
+  }
+  .about-section {
+    @apply md:text-[70px] text-[42px] md:leading-[91px] font-extrabold flex flex-col sm:justify-start  items-center my-[130px]  max-sm:px-9 max-sm:text-[36px] max-xsm:text-2xl max-md:my-8 relative max-md:top-[96px];
+  }
+
+  .picture-background {
+    @apply h-[500px] relative max-lg:top-[96px] mt-[151px] max-slg:mt-[50px] bg-picture-bg bg-cover bg-no-repeat w-full bg-center md:bg-right lg:bg-right max-md:h-[400px] max-sm:h-[350px];
+  }
+
+  .headingspan {
+    @apply font-semibold leading-[26.4px] md:text-2xl text-[20px] max-sm:text-lg text-[#161519] mb-4;
+  }
+
+  .contact-input {
+    @apply w-full h-[47px] rounded-md py-[10px] px-4 bg-white outline-none text-black placeholder:text-[#696969];
+  }
+
+  .paginationBlogBtn {
+    @apply p-3 text-sm border rounded-md hover:border-2 hover:border-[#010D3E] flex gap-2 items-center font-semibold border-gray-300;
+  }
+
+  .dropdown-button {
+    @apply bg-[#EAEEFE] cursor-pointer shadow-md font-medium  text-[#010D3E];
+  }
+
+  .dropdown-menu {
+    @apply absolute mt-4 bg-[#EAEEFE] shadow-xl rounded-xl z-10 w-full overflow-y-auto max-h-[200px];
+  }
+
+  .dropdown-item {
+    @apply px-4 py-2 text-sm cursor-pointer transition hover:bg-[#010d3ebe] hover:text-white;
+  }
+  s .formdivs label {
+    @apply text-sm font-semibold;
+  }
+
+  .formdivs input,
+  .formdivs textarea {
+    @apply rounded-lg border border-gray-200 w-full p-3 outline-none focus:border-[#010D3E] placeholder:text-sm placeholder:text-gray-400;
+  }
+
+  .formdivs .input {
+    @apply focus:border-gray-200;
+  }
+
+  .phoneinputdiv:focus {
+    @apply border-l border-[#010D3E];
+  }
+
+  .login-text {
+    @apply text-white xlg:max-w-[320px] max-w-[250px] leading-[29px] tracking-[1.5%] absolute right-0 mr-4 xlg:top-[150px] top-[50px] text-sm max-xslg:hidden;
+  }
+
+  .signup-form {
+    @apply md:max-w-[529px] max-sm:p-4  mt-6 max-xl:px-[50px];
+  }
+
+  .step-circle {
+    @apply w-[26px] h-[26px] rounded-full border-[1.5px] flex items-center justify-center border-black;
+  }
+
+  .step-line {
+    @apply bg-[#A2A6A9] w-[130px] h-[2px] max-xsm:w-[90px] max-xxsm:w-[40px];
+  }
+
+  .login-btn {
+    @apply w-full h-12 bg-[#010D3E] text-white shadow-sm rounded-lg hover:shadow-xl hover:bg-[#000099] transition-all duration-300;
+  }
+  .btn-hover {
+    @apply hover:shadow-xl hover:bg-[#010D3E] transition-all duration-300;
+  }
+  .filterDiv {
+    @apply md:sticky lg:top-[40px] md:top-[80px]  h-full md:h-[calc(100vh-80px)] overflow-y-auto flex-shrink-0 md:w-[20%] bg-[#EAEEFE] p-5 shadow-md rounded-xl special-scrollbar;
+  }
+
+  .dashboard-container {
+    @apply relative top-24 py-20 px-[100px] max-xlg:px-[50px] max-xlg:py-[50px] max-sm:px-4;
+  }
+
+  .notice-div a {
+    @apply text-[#010D3E] font-semibold;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.button-container:hover .icon-animate {
+  animation: slideIn 0.5s ease-out forwards;
+  opacity: 1;
+}
+
+.tab {
+  position: relative;
+  width: 212px;
+  height: 33px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.tab::before {
+  content: "";
+  position: absolute;
+  bottom: -3px; /* Adjust according to your needs */
+  left: 50%;
+  width: 0;
+  height: 3px; /* Border height */
+  background-color: #010d3e;
+  transition: all 0.3s ease-in-out;
+  transform: translateX(-50%);
+}
+
+.tab.active {
+  color: #010d3e;
+}
+
+.tab.active::before {
+  width: 100%;
+}
+
+/* .filter {
+  filter: sepia(1) saturate(700%) hue-rotate(180deg) brightness(0.8);
+} */
+
+.globe {
+  background: radial-gradient(
+      50% 50% at 50% 50%,
+      rgba(0, 0, 128, 0.6) 0%,
+      rgba(0, 0, 128, 0) 100%
+    ),
+    linear-gradient(225deg, #010d3e 0%, #010d3e 100%);
+
+  box-shadow: 0px 0px 5px 5px #0022cc, 0px 0px 24px rgba(0, 43, 255, 0.8),
+    inset 0px 0px 92px 20px #0022cc;
+}
+
+.globe-inner {
+  background-size: cover; /* Ensure the image covers the entire div */
+  background-position: 0 0; /* Start at the top-left corner */
+  /* transform: rotateX(6deg) rotateY(6deg) rotateZ(6deg); */
+  animation: rotate-globe 15s linear infinite;
+}
+
+@keyframes rotate-globe {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+  }
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}

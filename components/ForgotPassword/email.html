@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      /* Add some basic styling */
+      body {
+        margin: 0;
+      }
+      .container {
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+      .button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #ffffff;
+        background-color: #000080;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 20px;
+      }
+
+      .header {
+        width: 100%;
+        height: 50px;
+        background-color: #000080;
+      }
+
+      .img-div {
+        margin-top: 10px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header"></div>
+      <div class="img-div">
+        <img src="/public/images/homepage/loader.png" alt="" />
+      </div>
+      <h2 style="font-size: 32px; font-weight: 700">Email Verification</h2>
+      <p>Hi there!</p>
+      <p>Please verify your email address by clicking the button below.</p>
+      <p style="font-style: italic; color: rgb(80, 79, 79)">
+        (This link will expire in 1 hour for security purposes.)
+      </p>
+      <a href="{{token}}" class="button">Verify Email</a>
+      <p>If you did not request this, please ignore this email.</p>
+      <p>
+        Best regards, <br />
+        <span
+          style="
+            font-weight: bold;
+            color: #000080;
+            margin-top: 10px;
+            display: block;
+            font-size: 18px;
+          "
+          >Frack</span
+        >
+      </p>
+    </div>
+    <div class="header"></div>
+  </body>
+</html>
