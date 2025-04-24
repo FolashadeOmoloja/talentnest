@@ -11,6 +11,8 @@ import Dropdown, { DropdownSelector } from "@/components/Elements/Dropdown";
 import { industriesArr } from "@/utilities/constants/searchbarData";
 import { Loader2 } from "lucide-react";
 import useRegisterCompany from "@/hooks/register-company-hook";
+import Logo from "@/components/Elements/Logo";
+import { useRouter } from "next/navigation";
 
 // Define validation rules for each form field
 
@@ -60,17 +62,19 @@ const HireTalentSignUpForm = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
+  const router = useRouter();
   return (
-    <section className="md:max-w-[529px] max-sm:p-4">
+    <section className="md:max-w-[529px] max-sm:p-4 max-xlg:px-4 pt-10">
       <div className="mb-6">
-        <FormLogo />
-        <h3 className="text-[#1B1818] font-semibold text-2xl mb-1">
-          Join Frack to discover top talent effortlessly!
+        <div className="cursor-pointer" onClick={() => router.push("/")}>
+          <Logo />
+        </div>
+        <h3 className="text-[#010D3E] font-semibold text-2xl mb-2 mt-7">
+          Build your dream team with TalentNest
         </h3>
-        <p className="text-gray-500 text-sm">
-          we can unlock the power of talent and drive success for{" "}
-          <br className="max-sm:hidden" /> businesses around the world.
+        <p className="text-gray-500 text-sm max-w-[420px]">
+          Tap into a global pool of vetted professionals ready to elevate your
+          projects and power your growth, no hassle, just results.
         </p>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -301,11 +305,7 @@ const HireTalentSignUpForm = () => {
             <span className="text-red-500 text-sm">{`${errors.privacyConsent.message}`}</span>
           )}
         </div>
-        <button
-          type="submit"
-          className="w-full h-12 bg-[#000080] text-white shadow-sm rounded-lg hover:shadow-xl hover:bg-[#000099] transition-all duration-300"
-          disabled={isSubmitting}
-        >
+        <button type="submit" className="form-btn" disabled={isSubmitting}>
           {loading ? (
             <div className="flex items-center justify-center">
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />

@@ -62,15 +62,13 @@ const Dropdown = ({
     <section
       className={`h-full ${className ? "basis-1/2" : "slg:min-w-[450px]"}`}
     >
-      <label className="text-gray-900 text-sm font-semibold">
+      <label className="text-[#010D3E] text-sm font-semibold">
         {label}
         {required && <span className="text-red-600 text-base">*</span>}
       </label>
       <div className="relative sm:h-full h-[50px] sm:basis-1/3 w-full">
         <div
-          className={`dropdown-button text-black w-full max-sm:rounded-md h-12 rounded-lg p-[12px] mt-2 ${
-            focus ? "border-[#000080]" : "border-gray-200"
-          }`}
+          className={`dropdown-button shadow-none bg-white border border-gray-200 text-black w-full max-sm:rounded-md h-12 rounded-lg p-[12px] mt-2`}
           onClick={showOptions}
         >
           {selectedItem ? (
@@ -83,7 +81,7 @@ const Dropdown = ({
           <FaCaretDown className="absolute right-[12px] top-[18px]" />
         </div>
         {isOpen && (
-          <div className="dropdown-menu custom-scrollbar mt-1 max-h-[200px]">
+          <div className="dropdown-menu bg-white special-scrollbar mt-1 max-h-[200px]">
             {ItemsArr.map((option, optionIdx) => (
               <div
                 key={optionIdx}
@@ -168,15 +166,13 @@ export const DropdownSelector = ({
     <section
       className={`h-full ${className ? "basis-1/2" : "slg:min-w-[450px]"}`}
     >
-      <label className="text-gray-900 text-sm font-semibold">
+      <label className="text-[#010d3e] text-sm font-semibold">
         {label}
         {required && <span className="text-red-600 text-base">*</span>}
       </label>
       <div className="relative sm:h-full h-[50px] sm:basis-1/3 w-full">
         <div
-          className={`dropdown-button text-black w-full max-sm:rounded-md h-12 rounded-lg p-[12px] mt-2 ${
-            focus ? "border-[#000080]" : "border-gray-200"
-          }`}
+          className={`dropdown-button shadow-none bg-white border border-gray-200 text-black w-full max-sm:rounded-md h-12 rounded-lg p-[12px] mt-2`}
           onClick={showOptions}
         >
           {selectedItems.length > 0 ? (
@@ -191,7 +187,7 @@ export const DropdownSelector = ({
             {ItemsArr.map((option, optionIdx) => (
               <div
                 key={optionIdx}
-                className="dropdown-item"
+                className="dropdown-item bg-white"
                 onClick={() => handleSelect(option)}
               >
                 {option}

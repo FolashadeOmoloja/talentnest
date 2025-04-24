@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useLoginUser } from "@/hooks/login-company-hook";
 import { Loader2 } from "lucide-react";
+import Logo from "@/components/Elements/Logo";
 
 // Define validation rules for each form field
 const validationRules = {
@@ -56,26 +57,16 @@ const ForTalentSignInForm = () => {
   return (
     <section className="md:max-w-[529px] max-slg:p-4">
       <div className="mb-6">
-        <div
-          className="ml-[-35px] cursor-pointer"
-          onClick={() => router.push("/")}
-        >
-          <Image
-            src={"/images/homepage/frack.png"}
-            alt={"logo"}
-            width={191}
-            height={96}
-            quality={100}
-            priority
-          />
+        <div className="cursor-pointer" onClick={() => router.push("/")}>
+          <Logo />
         </div>
-        <h3 className="text-[#1B1818] font-semibold text-2xl mb-1">
-          Welcome back to Frack's workforce
+        <h3 className="text-[#1B1818] font-semibold text-2xl mb-2 mt-10">
+          Welcome back to TalentNest
         </h3>
         <p className="text-gray-500 text-sm md:max-w-[400px]">
-          Discover exciting roles at the world's best companies, join a top{" "}
-          class community, and access exclusive learning opportunities and
-          benefits.
+          Step into new opportunities with leading companies, connect with a
+          thriving global community, and unlock resources to grow your skills
+          and career.
         </p>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -123,11 +114,7 @@ const ForTalentSignInForm = () => {
           )}
         </div>
 
-        <button
-          type="submit"
-          className="w-full h-12 bg-[#000080] text-white shadow-sm rounded-lg hover:shadow-xl hover:bg-[#000099] transition-all duration-300"
-          disabled={isSubmitting}
-        >
+        <button type="submit" className="form-btn" disabled={isSubmitting}>
           {loading ? (
             <div className="flex items-center justify-center">
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -140,7 +127,7 @@ const ForTalentSignInForm = () => {
       </form>
       <Link
         href={"/retrieve-password"}
-        className="text-[#000080] mt-2 font-semibold block text-[15px]"
+        className="text-[#010d3e] mt-2 font-semibold block text-[13px]"
       >
         Forgot Password?
       </Link>

@@ -2,11 +2,11 @@ import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useState } from "react";
-import FormLogo from "@/components/Elements/FormLogo";
 import { validationRules } from "@/utilities/constants";
 import useLoginCompany from "@/hooks/login-company-hook";
 import { Loader2 } from "lucide-react";
 import Logo from "@/components/Elements/Logo";
+import { useRouter } from "next/navigation";
 
 const HireTalentLoginForm = () => {
   const {
@@ -37,13 +37,16 @@ const HireTalentLoginForm = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
+  const router = useRouter();
   return (
     <section className="md:max-w-[529px] max-sm:p-4 ">
       <div className="mb-6">
-        <Logo />
+        <div className="cursor-pointer" onClick={() => router.push("/")}>
+          <Logo />
+        </div>
+
         <h3 className="text-[#010D3E] font-semibold text-2xl mb-2 mt-10">
-          Log in to find talent
+          Start hiring smarter
         </h3>
         <p className="text-gray-500 text-sm max-w-[350px]">
           TalentNest empowers companies to tap into a worldwide network of
@@ -95,11 +98,7 @@ const HireTalentLoginForm = () => {
           )}
         </div>
 
-        <button
-          type="submit"
-          className="w-full h-12 bg-black text-white shadow-sm rounded-lg hover:shadow-xl hover:bg-[#141414] transition-all duration-300"
-          disabled={isSubmitting}
-        >
+        <button type="submit" className="form-btn" disabled={isSubmitting}>
           {loading ? (
             <div className="flex items-center justify-center">
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />

@@ -70,14 +70,9 @@
     @apply bg-gradient-to-r from-black  to-[#001E80] text-transparent bg-clip-text;
   }
 
-  .picture-background {
-    @apply h-[500px] relative max-lg:top-[96px] mt-[151px] max-slg:mt-[50px] bg-picture-bg bg-cover bg-no-repeat w-full bg-center md:bg-right lg:bg-right max-md:h-[400px] max-sm:h-[350px];
-  }
-
   .contact-input {
     @apply w-full h-[47px] rounded-md py-[10px] px-4 bg-white outline-none text-black placeholder:text-[#696969];
   }
-
   .paginationBlogBtn {
     @apply p-3 text-sm border rounded-md hover:border-2 hover:border-[#010D3E] flex gap-2 items-center font-semibold border-gray-300;
   }
@@ -104,6 +99,9 @@
 
   .formdivs .input {
     @apply focus:border-gray-200;
+  }
+  .form-btn {
+    @apply w-full h-12 bg-black text-white shadow-sm rounded-lg hover:shadow-xl hover:bg-[#141414] transition-all duration-300;
   }
 
   .phoneinputdiv:focus {

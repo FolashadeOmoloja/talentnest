@@ -92,7 +92,7 @@ const PhoneNoInput: React.FC<PhoneNoInputProps> = ({
       <div className="basis-[20%] relative">
         <div
           onClick={toggleDropdown}
-          className="flex items-center justify-center cursor-pointer bg-[#F3F4F7] h-full py-[14.62px] rounded-md"
+          className="flex items-center justify-center cursor-pointer bg-white h-full py-[13px] rounded-md"
         >
           <img
             src={selectedCountry.flag}
