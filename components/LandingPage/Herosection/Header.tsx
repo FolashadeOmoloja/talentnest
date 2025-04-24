@@ -13,7 +13,7 @@ const Header = () => {
   return (
     <header
       ref={heroRef}
-      className="section-container mt-0 pb-[50px]  bg-cover bg-center bg-no-repeat bg-[radial-gradient(ellipse_200%_100%_at_bottom_left,#183EC2,#EAEEFE_66%)] w-full  flex max-lg:flex-col"
+      className="section-container mt-0 pb-[50px]  bg-[radial-gradient(ellipse_200%_100%_at_bottom_left,#183EC2,#EAEEFE_66%)] w-full  flex max-lg:flex-col"
     >
       <div className="basis-1/2 flex flex-col mt-[80px] max-md:mt-[10px] items-start gap-7">
         <SmallBox />

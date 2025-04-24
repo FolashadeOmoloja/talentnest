@@ -21,19 +21,24 @@ const Login = () => {
     }
   }, [dispatch]); // Dependency array includes dispatch
   return (
-    <section className="sm:h-[100vh] flex">
-      <div
-        className="basis-1/2 bg-cover bg-no-repeat bg-[#000080] relative max-md:hidden"
-        style={{ backgroundImage: "url('/images/homepage/signup-bg1.svg')" }}
-      >
-        <p className="login-text">
-          Access Talent with a simple Login We help organizations around the
-          world harness the power of great talent to drive their success.
-        </p>
-      </div>
-      <section className="md:basis-1/2 max-md:w-full flex items-center justify-center">
+    <section className="sm:h-[100vh] flex bg-[#eaeefe]">
+      <section className="md:basis-1/2 max-md:w-full flex items-center justify-center ">
         <HireTalentLoginForm />
       </section>
+      <div className="basis-1/2  bg-gradient-to-r from-[#1944b0]  to-slate-900  relative max-md:hidden centered flex-col overflow-hidden ">
+        <p className="text-white text-4xl max-slg:mt-10 font-semibold flex-col centered font-['georgia'] italic slg:absolute slg:top-10">
+          <span className="text-xl font-extralight mb-2 ">
+            Connecting Companies
+          </span>{" "}
+          To Global Talents
+        </p>
+        <div className=" w-full h-full absolute inset-0 ob ">
+          <img
+            src="/images/homepage/signup-bg.svg"
+            className=" w-full h-full object-cover opacity-90"
+          />
+        </div>
+      </div>
     </section>
   );
 };

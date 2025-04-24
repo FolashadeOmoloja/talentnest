@@ -105,7 +105,7 @@ const Filter = ({
                 <input
                   type="checkbox"
                   checked={isChecked[item.idx]}
-                  className="accent-[#000080] w-4 h-4 cursor-pointer bg-slate-700"
+                  className="accent-[#010D3E] w-4 h-4 cursor-pointer bg-slate-700"
                   onChange={() =>
                     handleCheckboxChange("hours", item.item, item.idx)
                   }

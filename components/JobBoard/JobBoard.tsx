@@ -78,12 +78,12 @@ const JobBoard = ({
           changeIsCheck={setIsChecked}
         />
         <button
-          className="text-2xl text-[#000080] mb-5 sm:hidden bg-white w-full h-[50px] rounded-lg flex justify-center items-center shadow-md"
+          className="text-2xl text-white mb-7 sm:hidden bg-[#010D3E] w-full h-[50px] rounded-lg flex justify-center items-center shadow-md"
           onClick={() => setShowFilter(!showFilter)}
         >
           <FaFilter />
         </button>
-        <section className="flex flex-col md:flex-row md:h-full gap-10">
+        <section className="flex flex-col md:flex-row md:h-full gap-10 max-slg:gap-5">
           <div className={`filterDiv max-sm:${showFilter ? "" : "hidden"}`}>
             <Filter
               onFilter={setFilteredJobs}

@@ -6,6 +6,7 @@ import FormLogo from "@/components/Elements/FormLogo";
 import { validationRules } from "@/utilities/constants";
 import useLoginCompany from "@/hooks/login-company-hook";
 import { Loader2 } from "lucide-react";
+import Logo from "@/components/Elements/Logo";
 
 const HireTalentLoginForm = () => {
   const {
@@ -38,15 +39,15 @@ const HireTalentLoginForm = () => {
   };
 
   return (
-    <section className="md:max-w-[529px] max-sm:p-4">
+    <section className="md:max-w-[529px] max-sm:p-4 ">
       <div className="mb-6">
-        <FormLogo />
-        <h3 className="text-[#1B1818] font-semibold text-2xl mb-1">
+        <Logo />
+        <h3 className="text-[#010D3E] font-semibold text-2xl mb-2 mt-10">
           Log in to find talent
         </h3>
-        <p className="text-gray-500 text-sm">
-          we can unlock the power of talent and drive success for{" "}
-          <br className="max-sm:hidden" /> businesses around the world.
+        <p className="text-gray-500 text-sm max-w-[350px]">
+          TalentNest empowers companies to tap into a worldwide network of
+          skilled professionals.
         </p>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -96,7 +97,7 @@ const HireTalentLoginForm = () => {
 
         <button
           type="submit"
-          className="w-full h-12 bg-[#000080] text-white shadow-sm rounded-lg hover:shadow-xl hover:bg-[#000099] transition-all duration-300"
+          className="w-full h-12 bg-black text-white shadow-sm rounded-lg hover:shadow-xl hover:bg-[#141414] transition-all duration-300"
           disabled={isSubmitting}
         >
           {loading ? (
@@ -111,7 +112,7 @@ const HireTalentLoginForm = () => {
       </form>
       <Link
         href={"/hire-talent/retrieve-password"}
-        className="text-[#000080] mt-2 font-semibold block text-[15px]"
+        className="text-[#010d3e] mt-2 font-semibold block text-[13px]"
       >
         Forgot Password?
       </Link>

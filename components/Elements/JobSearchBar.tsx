@@ -132,7 +132,7 @@ const JobSearchBar = ({
   };
 
   return (
-    <section className="flex items-center mb-10 sm:h-[50px] max-sm:flex-col max-sm:gap-7">
+    <section className="flex items-center mb-10 max-sm:mb-7 sm:h-[50px] max-sm:flex-col max-md:gap-7">
       <section className="flex h-full max-sm:flex-col w-full gap-4">
         {searchBarData.map((item, idx) => (
           <div
@@ -140,7 +140,7 @@ const JobSearchBar = ({
             className="relative sm:h-full h-[50px]  sm:basis-1/3 w-full"
           >
             <button
-              className={`dropdown-button h-full w-full rounded-xl centered gap-3  ${
+              className={`dropdown-button h-full w-full rounded-xl centered gap-3 max-md:gap-1 max-sm:gap-3 max-md:px-1  ${
                 idx == 1 || idx == 2 ? "sm:border-l-0" : ""
               }`}
               onClick={() => showOptions(idx)}

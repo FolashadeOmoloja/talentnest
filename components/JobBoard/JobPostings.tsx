@@ -28,18 +28,18 @@ const JobPosting = ({
       <h4 className="text-[#7C8698] text-sm font-[500] mb-5">
         Showing {filteredJobs.length} of {jobPostings.length} jobs
       </h4>
-      <section className="grid md:grid-cols-2 grid-cols-1 gap-4">
+      <section className="grid lg:grid-cols-2 grid-cols-1 gap-4">
         {filteredJobs.map((item, idx) => (
           <section
             key={idx}
             className="bg-[#EAEEFE] rounded-xl shadow-md p-6 flex flex-col col-span-1"
           >
-            <div className="flex justify-between mb-3 items-center">
+            <div className="flex justify-between mb-3 items-center max-xsm:gap-1">
               <h6 className="text-xl font-semibold">{item.title}</h6>
               <CTABTN
                 route={`/${mainRoute}/${idx}`}
                 CTA="View Job"
-                width="w-full xlg:w-[138px] rounded-xl h-11 text-sm "
+                width="w-[138px] rounded-xl h-11 text-sm"
                 height="h-[44px]"
                 backGround="bg-white"
                 color="text-[#010D3E]"
