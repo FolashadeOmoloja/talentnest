@@ -1,13 +1,17 @@
+import { FaBriefcase } from "react-icons/fa6";
 import DashboardNavbar from "../Navbar/Navbar";
+import { MdNotifications } from "react-icons/md";
 
 const NavLinks = [
   {
-    navItem: "Dashboard",
-    href: "/dashboard",
+    id: "Jobs",
+    navItem: <FaBriefcase />,
+    href: "/dashboard/jobs",
   },
   {
-    navItem: "Jobs",
-    href: "/dashboard/jobs",
+    id: "Notifications",
+    navItem: <MdNotifications />,
+    href: "/dashboard/notifications",
   },
 ];
 

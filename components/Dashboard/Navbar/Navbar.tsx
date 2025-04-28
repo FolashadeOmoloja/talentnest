@@ -2,7 +2,8 @@ import DashboardMainNavbar from "./MainNav";
 import DashboardMobileNav from "./MobileNav";
 
 type NavLinks = {
-  navItem: string;
+  id: string;
+  navItem: string | JSX.Element;
   href: string;
 }[];
 

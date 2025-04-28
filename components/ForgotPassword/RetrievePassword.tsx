@@ -19,7 +19,7 @@ const RetrievePassword = ({ company }: { company: boolean }) => {
               : "With our platform, you can easily find and apply for positions that match your skills and aspirations."}
           </p>
         </div>
-        <p className="mt-16 text-sm font-medium">
+        <p className="mt-16 text-sm font-medium text-center">
           {company
             ? "Post your job and start connecting with top talents instantly"
             : "Create your profile and get discovered by top companies worldwide."}

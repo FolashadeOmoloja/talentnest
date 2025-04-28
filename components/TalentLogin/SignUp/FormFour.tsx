@@ -6,6 +6,7 @@ import { RootState } from "@/redux/store";
 import { getRandomColor } from "@/utilities/constants";
 import useRegisterTalent from "@/hooks/register-user-hook";
 import { Loader2 } from "lucide-react";
+import Logo from "@/components/Elements/Logo";
 
 interface TalentRegistrationData {
   firstName: string;
@@ -90,27 +91,22 @@ const FormFour = ({ resume }: { resume: File | null }) => {
 
   return (
     <section className="signup-form h-[100vh]">
-      <div className="mb-6">
-        <FormLogo />
-        <div className="px-[15px]">
-          <StepCounter pastActiveOne pastActiveTwo pastActiveThree />
+      <div className="mb-6 xsm:mt-36 mt-16">
+        <div className="cursor-pointer  flex justify-center">
+          <Logo />
         </div>
-        <div className="centered flex-col xsm:mt-36 mt-20">
-          <h3 className="text-[#1B1818] font-semibold text-2xl mb-1 text-center">
-            Congratulations!
+        <div className="centered flex-col ">
+          <h3 className="text-[#010D3E] font-semibold text-2xl  mb-2 mt-7 text-center">
+            Congratulations 🎉!
           </h3>
           <p className="text-gray-500 text-sm text-center">
-            Congratulations! You have successfully completed all the necessary
-            details of your registration. You will now be added to the waitlist.
+            You're all set! Your registration is complete, and you've been added
+            to the waitlist.
           </p>
         </div>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <button
-          type="submit"
-          className="w-full h-12 bg-[#000080] text-white shadow-sm rounded-lg hover:shadow-xl hover:bg-[#000099] transition-all duration-300"
-          disabled={isSubmitting}
-        >
+        <button type="submit" className="form-btn" disabled={isSubmitting}>
           {loading ? (
             <div className="flex items-center justify-center">
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />

@@ -9,6 +9,7 @@ import axios from "axios";
 import Link from "next/link";
 import { RESET_API_END_POINT } from "@/utilities/constants/constants";
 import { useResetPassword } from "@/hooks/reset-password-hook";
+import Logo from "../Elements/Logo";
 
 const validationRules = {
   password: {
@@ -30,7 +31,6 @@ const ResetPasswordForm = ({ company }: { company: boolean }) => {
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
   const [isValidToken, setIsValidToken] = useState(false);
-  const [tokenLoading, setTokenLoading] = useState(false);
   const [message, setMessage] = useState("");
 
   useEffect(() => {
@@ -74,7 +74,7 @@ const ResetPasswordForm = ({ company }: { company: boolean }) => {
   return (
     <section className="md:max-w-[529px] max-slg:p-4">
       <div className="mb-6">
-        {isValidToken ? (
+        {/* {isValidToken ? (
           <div className="ml-[-35px] cursor-pointer">
             <Image
               src={"/images/homepage/frack.png"}
@@ -96,13 +96,19 @@ const ResetPasswordForm = ({ company }: { company: boolean }) => {
               priority
             />
           </div>
-        )}
+        )} */}
+
+        {
+          <div className={`${isValidToken ? "" : "centered"}`}>
+            <Logo />
+          </div>
+        }
         {isValidToken ? (
-          <h3 className="text-[#1B1818] font-semibold text-2xl mb-1">
+          <h3 className="text-[#010D3E] font-semibold text-2xl mb-2 mt-10">
             Reset Password
           </h3>
         ) : (
-          <h3 className="text-red-500 font-semibold text-3xl mb-1 w-full text-center">
+          <h3 className="text-red-500 font-semibold text-3xl mb-2 mt-10 w-full text-center">
             {message}
           </h3>
         )}
@@ -112,7 +118,7 @@ const ResetPasswordForm = ({ company }: { company: boolean }) => {
               company ? "/hire-talent/retrieve-password" : "/retrieve-password"
             }
           >
-            <div className="xsm:w-[300px] centered w-full h-12 bg-[#000080] text-white shadow-sm rounded-lg hover:shadow-xl hover:bg-[#000099] transition-all duration-300 mt-9">
+            <div className="xsm:w-[300px] centered form-btn mt-9">
               Resend Link
             </div>
           </Link>
@@ -149,11 +155,7 @@ const ResetPasswordForm = ({ company }: { company: boolean }) => {
             )}
           </div>
 
-          <button
-            type="submit"
-            className="w-full h-12 bg-[#000080] text-white shadow-sm rounded-lg hover:shadow-xl hover:bg-[#000099] transition-all duration-300"
-            disabled={isSubmitting}
-          >
+          <button type="submit" className="form-btn" disabled={isSubmitting}>
             {loading ? (
               <div className="flex items-center justify-center">
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />

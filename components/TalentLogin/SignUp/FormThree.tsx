@@ -12,6 +12,8 @@ import { companyValidationRules as validationRules } from "@/utilities/constants
 import { useDispatch, useSelector } from "react-redux";
 import { setStep3Data } from "@/redux/slices/talentRegistrationSlice";
 import { RootState } from "@/redux/store";
+import Logo from "@/components/Elements/Logo";
+import { useRouter } from "next/navigation";
 
 const MAX_FILE_SIZE_MB = 2;
 const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
@@ -80,20 +82,19 @@ const FormThree = ({
     setValue("resume", null);
     setFileSizeError(null);
   };
-
+  const router = useRouter();
   return (
     <section className="signup-form">
       <div className="mb-6">
-        <FormLogo />
-        <div className="px-[15px]">
-          <StepCounter activeThree pastActiveTwo pastActiveOne />
+        <div className="cursor-pointer" onClick={() => router.push("/")}>
+          <Logo />
         </div>
-        <h3 className="text-[#1B1818] font-semibold text-2xl mb-1">
+        <h3 className="text-[#010D3E] font-semibold text-2xl mb-2 mt-7">
           Upload your resume
         </h3>
-        <p className="text-gray-500 text-sm">
-          This will form the basis of your Frack profile, which can be updated
-          any time
+        <p className="text-gray-500 text-sm max-w-[500px]">
+          This becomes the foundation of your TalentNest profile—and you can
+          update it anytime as you grow.
         </p>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
@@ -119,7 +120,7 @@ const FormThree = ({
                 </Worker>
               ) : (
                 <div className="flex flex-col items-center">
-                  <BiSolidFileDoc className="text-[100px] text-[#000080]" />
+                  <BiSolidFileDoc className="text-[100px] text-[#010D3E]" />
                   <span className="text-sm w-[80%] text-center">
                     {fileName}
                   </span>
@@ -132,7 +133,7 @@ const FormThree = ({
               <span className="font-bold text-lg">Upload your resume</span>
               <p className="text-sm">
                 Drop your file here (PDF, DOC, DOCX) or{" "}
-                <span className="text-[#000080] font-bold">Browse</span>
+                <span className="text-[#010D3E] font-bold">Browse</span>
                 <br />
                 Max file size: 2MB
               </p>
@@ -144,7 +145,7 @@ const FormThree = ({
         ) : fileUrl ? (
           <button
             type="button"
-            className=" bg-[#000080] text-white h-[40px] font-semibold xxsm:w-[100px] text-sm rounded-md"
+            className=" bg-[#010D3E] text-white h-[40px] font-semibold xxsm:w-[100px] text-sm rounded-md"
             onClick={clearFile}
           >
             Change File
@@ -166,7 +167,7 @@ const FormThree = ({
         />
         <div className="mb-14 mt-14 max-sm:mt-10 flex gap-10 max-xsm:gap-5">
           <div
-            className="login-btn centered gap-3 cursor-pointer icon-animate"
+            className="form-btn centered gap-3 cursor-pointer icon-animate"
             onClick={() => {
               changeActive(2);
               changeBgState("url('/images/homepage/signup-bg4.svg')");
@@ -174,7 +175,7 @@ const FormThree = ({
           >
             <FaArrowLeft /> <span>Back</span>
           </div>
-          <button type="submit" className="login-btn" disabled={isSubmitting}>
+          <button type="submit" className="form-btn" disabled={isSubmitting}>
             Continue
           </button>
         </div>

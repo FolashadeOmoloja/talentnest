@@ -1,5 +1,4 @@
 "use client";
-import FormLogo from "@/components/Elements/FormLogo";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { setLoading, setUser } from "@/redux/slices/authSlice";
@@ -7,6 +6,8 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
+import Logo from "../Elements/Logo";
+import { TALENT_API_END_POINT } from "@/utilities/constants/constants";
 
 interface DashboardSignOutProps {
   END_POINT: string;
@@ -43,53 +44,56 @@ const DashboardSignOut: React.FC<DashboardSignOutProps> = ({ END_POINT }) => {
   };
 
   return (
-    <section className="flex">
-      <div
-        className="basis-1/2 bg-cover bg-no-repeat bg-[#000080] relative max-md:hidden"
-        style={{ backgroundImage: "url('/images/homepage/signup-bg6.svg')" }}
-      >
-        <p className="login-text top-[30px] xlg:max-w-[230px] ">
-          <span className="font-semibold text-base">
-            "Thank You for Visiting Frack!"
-          </span>{" "}
-          <br />
-          We hope you had a productive time. Remember, you can always come back
-          and continue where you left off.
-        </p>
-      </div>
-      <section className="md:basis-1/2 max-md:w-full flex items-center justify-center">
-        <section className="signup-form h-[100vh]  ">
-          <div className="mb-6 xsm:mt-32 mt-20">
-            <FormLogo />
-            <div className="centered flex-col  mb-20 ">
-              <h3 className="text-[#1B1818] font-semibold text-2xl mb-1 text-center">
-                We hope to see you again soon!
-              </h3>
-              <p className="text-gray-500  text-center">
-                You are about to log out from this account.
-              </p>
-            </div>
-          </div>
-          <div className="mt-4 flex gap-10 max-xsm:gap-5">
-            <button
-              className="login-btn gap-3 cursor-pointer bg-[#00B5E8] hover:bg-[#00B5E8]"
-              onClick={handleCancel}
-            >
-              Cancel
-            </button>
-            <button type="button" className="login-btn" onClick={handleSignOut}>
-              {loading ? (
-                <div className="flex items-center justify-center">
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Please wait
-                </div>
-              ) : (
-                "Sign Out"
-              )}
-            </button>
-          </div>
-        </section>
+    <section className="h-svh flex bg-[#eaeefe]">
+      <section className="md:basis-1/2 max-md:w-full centered flex-col p-10">
+        <div className="centered flex-col mb-6">
+          <Logo />
+          <h3 className="text-[#010D3E] font-semibold text-2xl mb-2 mt-10">
+            See you again soon!
+          </h3>
+          <p className="text-gray-500 text-sm max-w-[350px] text-center">
+            You're about to sign out of your account. Come back anytime to
+            continue growing your journey.
+          </p>
+        </div>
+
+        <div className="mt-4 flex gap-10 max-xsm:gap-5 w-full max-w-[500px]">
+          <button className="form-btn" onClick={handleCancel}>
+            Cancel
+          </button>
+          <button type="button" className="login-btn" onClick={handleSignOut}>
+            {loading ? (
+              <div className="flex items-center justify-center">
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Please wait
+              </div>
+            ) : (
+              "Sign Out"
+            )}
+          </button>
+        </div>
       </section>
+      <div className="basis-1/2  bg-gradient-to-r from-[#1944b0]  to-slate-900  relative max-md:hidden centered flex-col overflow-hidden text-white font-extralight">
+        <div className="w-[75%]  p-10 max-lg:p-7 rounded-lg shadow-md  backdrop-blur-sm  bg-white/10 ">
+          <p className=" text-2xl  font-semibold  font-['georgia'] italic mb-6">
+            {END_POINT === TALENT_API_END_POINT
+              ? "Thanks for stopping by TalentNest!"
+              : "Thanks for trusting TalentNest!"}
+          </p>
+          <p className="text-sm ">
+            {END_POINT === TALENT_API_END_POINT
+              ? "Feel free to return anytime to pick up where you left off and continue your journey."
+              : "Feel free to return anytime and continue building your dream team."}
+          </p>
+        </div>
+
+        <div className=" w-full h-full absolute inset-0 ">
+          <img
+            src="/images/homepage/signup-bg.svg"
+            className=" w-full h-full object-cover opacity-90"
+          />
+        </div>
+      </div>
     </section>
   );
 };

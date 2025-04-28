@@ -36,7 +36,7 @@ const Login = () => {
             and success.
           </p>
         </div>
-        <p className="mt-16 text-sm font-medium">
+        <p className="mt-16 text-sm font-medium text-center">
           Post your job and start connecting with top talents instantly
         </p>
 

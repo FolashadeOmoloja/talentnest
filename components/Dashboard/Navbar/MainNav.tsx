@@ -4,9 +4,13 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import CTABTN from "@/components/Elements/CTA/CTA-Button";
 import UserAvatar from "@/components/Elements/UserAvatar";
+import Logo from "@/components/Elements/Logo";
+import { FaBriefcase } from "react-icons/fa6";
+import { useSelector } from "react-redux";
 
 type NavLinks = {
-  navItem: string;
+  id: string;
+  navItem: string | JSX.Element;
   href: string;
 }[];
 
@@ -30,35 +34,32 @@ const DashboardMainNavbar = ({
   buttonCta: string;
 }) => {
   const router = useRouter();
+  const { talentNotifications } = useSelector(
+    (store: any) => store.notification
+  );
   return (
-    <nav className="fixed inset-0 z-30 flex pl-16 pr-[100px] h-24 max-xlg:pr-[50px] max-xlg:pl-[10px] max-md:hidden bg-white">
-      <div className="cursor-pointer" onClick={() => router.push("/")}>
-        <Image
-          src={"/images/homepage/frack.png"}
-          alt={"logo"}
-          width={191}
-          height={96}
-          quality={100}
-          priority
-        />
+    <nav className="fixed inset-0 z-30 flex justify-between px-[100px] h-24 max-xlg:px-[50px]  max-md:hidden bg-[#EAEEFE]">
+      <div
+        className="cursor-pointer flex items-center"
+        onClick={() => router.push("/dashboard")}
+      >
+        <Logo />
       </div>
-      <ul className="flex-1 flex justify-center items-center gap-10 max-xlg:gap-[20px] ">
-        {NavLinks.map((item, idx) => {
-          return (
-            <Link
-              key={idx}
-              className={`relative cursor-pointer hover:text-[#000080] transition  duration-300 font-[500] text-lg ${
-                activeItem === idx ? "text-[#000080] font-semibold" : ""
-              }`}
-              href={item.href}
-            >
-              <span className="">{item.navItem}</span>
-            </Link>
-          );
-        })}
-      </ul>
-      <div className="flex items-center  gap-10">
-        <CTABTN route={buttonLink} CTA={buttonCta} />
+      <div className="flex items-center  gap-7 ">
+        <ul className="centered gap-7 ">
+          {NavLinks.map((item, idx) => {
+            return (
+              <div
+                className="dash-nav"
+                key={idx}
+                onClick={() => router.push(item.href)}
+              >
+                {item.id}
+                {item.navItem}
+              </div>
+            );
+          })}
+        </ul>
         <UserAvatar dropDown={DropDown} />
       </div>
     </nav>

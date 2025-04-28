@@ -9,6 +9,8 @@ import { companyValidationRules as validationRules } from "@/utilities/constants
 import { setStep1Data } from "@/redux/slices/talentRegistrationSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
+import { useRouter } from "next/navigation";
+import Logo from "@/components/Elements/Logo";
 
 // Define validation rules for each form field
 
@@ -43,22 +45,22 @@ const FormOne = ({
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+  const router = useRouter();
 
   return (
     <section className="signup-form">
       <div className="mb-6">
-        <FormLogo />
-        <div className="px-[15px]">
-          <StepCounter activeOne />
+        <div className="cursor-pointer" onClick={() => router.push("/")}>
+          <Logo />
         </div>
-        <h3 className="text-[#1B1818] font-semibold text-2xl mb-1">
-          Apply to join Frack’s workforce
+
+        <h3 className="text-[#010D3E] font-semibold text-2xl mb-2 mt-7">
+          Be a part of the Nest
         </h3>
-        <p className="text-gray-500 text-sm">
-          Discover exciting roles at the world's best companies, join a top{" "}
-          <br className="max-sm:hidden" />
-          class community, and access exclusive learning opportunities and
-          benefits.
+        <p className="text-gray-500 text-sm max-w-[500px]">
+          Join a vibrant network of ambitious professionals, collaborate with
+          forward-thinking companies, and grow together through shared success,
+          support, and opportunities.
         </p>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -237,11 +239,7 @@ const FormOne = ({
             <span className="text-red-500 text-sm">{`${errors.privacyConsent.message}`}</span>
           )}
         </div>
-        <button
-          type="submit"
-          className="w-full h-12 bg-[#000080] text-white shadow-sm rounded-lg hover:shadow-xl hover:bg-[#000099] transition-all duration-300"
-          disabled={isSubmitting}
-        >
+        <button type="submit" className="form-btn" disabled={isSubmitting}>
           Continue
         </button>
       </form>

@@ -7,7 +7,8 @@ import { useRouter } from "next/navigation";
 import UserAvatar from "@/components/Elements/UserAvatar";
 
 type NavLinks = {
-  navItem: string;
+  id: string;
+  navItem: string | JSX.Element;
   href: string;
 }[];
 

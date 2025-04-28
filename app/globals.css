@@ -116,19 +116,15 @@
     @apply md:max-w-[529px] max-sm:p-4  mt-6 max-xl:px-[50px];
   }
 
-  .step-circle {
-    @apply w-[26px] h-[26px] rounded-full border-[1.5px] flex items-center justify-center border-black;
-  }
-
-  .step-line {
-    @apply bg-[#A2A6A9] w-[130px] h-[2px] max-xsm:w-[90px] max-xxsm:w-[40px];
-  }
-
   .login-btn {
-    @apply w-full h-12 bg-[#010D3E] text-white shadow-sm rounded-lg hover:shadow-xl hover:bg-[#000099] transition-all duration-300;
+    @apply w-full h-12 bg-[#010D3E] text-white shadow-sm rounded-lg hover:shadow-xl hover:bg-[#001354] transition-all duration-300;
   }
   .btn-hover {
     @apply hover:shadow-xl hover:bg-[#010D3E] transition-all duration-300;
+  }
+
+  .dash-nav {
+    @apply bg-white cursor-pointer shadow-sm centered w-[51px] h-[51px] rounded-full text-[24px] text-[#010D3E];
   }
   .filterDiv {
     @apply md:sticky lg:top-[40px] md:top-[80px]  h-full md:h-[calc(100vh-80px)] overflow-y-auto flex-shrink-0 slg:w-[20%] md:w-[25%] bg-[#EAEEFE] p-5 shadow-md rounded-xl special-scrollbar;

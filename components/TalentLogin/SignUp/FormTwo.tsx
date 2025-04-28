@@ -9,6 +9,8 @@ import { companyValidationRules as validationRules } from "@/utilities/constants
 import { RootState } from "@/redux/store";
 import { useEffect } from "react";
 import { useGetAllFilters } from "@/hooks/content-hook";
+import Logo from "@/components/Elements/Logo";
+import { useRouter } from "next/navigation";
 
 const FormTwo = ({
   changeBgState,
@@ -47,16 +49,16 @@ const FormTwo = ({
     changeBgState("url('/images/homepage/signup-bg5.svg')");
     changeActive(3);
   };
-
+  const router = useRouter();
   return (
     <section className="signup-form">
       <div className="mb-6">
-        <FormLogo />
-        <div className="px-[15px]">
-          <StepCounter activeTwo pastActiveOne />
+        <div className="cursor-pointer" onClick={() => router.push("/")}>
+          <Logo />
         </div>
-        <h3 className="text-[#1B1818] font-semibold text-2xl mb-1">
-          Professional expertise
+
+        <h3 className="text-[#010D3E] font-semibold text-2xl mb-2 mt-7">
+          Advance your career.
         </h3>
         <p className="text-gray-500 text-sm">
           Let us match you with the greatest companies in the world.
@@ -151,7 +153,7 @@ const FormTwo = ({
         </div>
         <div className="mb-12 flex gap-10 max-xsm:gap-5">
           <div
-            className="login-btn centered gap-3 cursor-pointer icon-animate"
+            className="form-btn centered gap-3 cursor-pointer icon-animate"
             onClick={() => {
               changeActive(1);
               changeBgState("url('/images/homepage/signup-bg3.svg')");
@@ -159,7 +161,7 @@ const FormTwo = ({
           >
             <FaArrowLeft /> <span>Back</span>
           </div>
-          <button type="submit" className="login-btn" disabled={isSubmitting}>
+          <button type="submit" className="form-btn" disabled={isSubmitting}>
             Continue
           </button>
         </div>
