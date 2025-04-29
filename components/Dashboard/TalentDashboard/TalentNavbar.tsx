@@ -1,6 +1,6 @@
 import { FaBriefcase } from "react-icons/fa6";
 import DashboardNavbar from "../Navbar/Navbar";
-import { MdNotifications } from "react-icons/md";
+import { MdLogout, MdNotifications } from "react-icons/md";
 
 const NavLinks = [
   {
@@ -13,31 +13,17 @@ const NavLinks = [
     navItem: <MdNotifications />,
     href: "/dashboard/notifications",
   },
-];
-
-const DropDown = [
   {
-    navItem: "Notifications",
-    icon: "/images/dashboard/icon1.svg",
-    href: "/dashboard/notifications",
-  },
-  {
-    navItem: "Sign Out",
-    icon: "/images/dashboard/icon2.svg",
-    href: "/sign-out",
+    id: "Sign Out",
+    navItem: <MdLogout />,
+    href: "/dashboard/sign-out",
   },
 ];
 
-const TalentNavbar = ({ activeItem }: { activeItem?: number }) => {
+const TalentNavbar = () => {
   return (
     <>
-      <DashboardNavbar
-        activeItem={activeItem}
-        NavLinks={NavLinks}
-        DropDown={DropDown}
-        buttonCta="My Jobs"
-        buttonLink="/dashboard/my-jobs"
-      />
+      <DashboardNavbar NavLinks={NavLinks} />
     </>
   );
 };

@@ -4,6 +4,8 @@ import TalentNavbar from "@/components/Dashboard/TalentDashboard/TalentNavbar";
 import { useGetAppliedJobs } from "@/hooks/job-hook";
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
+import { FaClipboardList, FaHandshake, FaNewspaper } from "react-icons/fa6";
+import { IoDocuments } from "react-icons/io5";
 import { useSelector } from "react-redux";
 
 const page = () => {
@@ -31,42 +33,88 @@ const page = () => {
   const interviews = appliedJobs.length != 0 ? filterJobs("Interview") : [];
   const hiredJobs = appliedJobs.length != 0 ? filterJobs("hired") : [];
 
+  // const talentAnalytics = [
+  //   {
+  //     analtyticsTitle: "Active Job Applications",
+  //     stats: activeAppliedJobs.length,
+  //     desc: `A Total of ${activeAppliedJobs.length} application${
+  //       activeAppliedJobs.length == 0 ? "" : "s"
+  //     }`,
+  //   },
+  //   {
+  //     analtyticsTitle: "Total Applications",
+  //     stats: appliedJobs.length ? appliedJobs.length : 0,
+  //     desc: `active job Applications`,
+  //   },
+  //   {
+  //     analtyticsTitle: "Active Interviews",
+  //     stats: interviews.length,
+  //     desc: "Scheduled Interviews",
+  //   },
+  //   {
+  //     analtyticsTitle: "Total Offers",
+  //     stats: hiredJobs.length,
+  //     desc: `${declinedJobs.length} Rejected Offer`,
+  //   },
+  // ];
   const talentAnalytics = [
     {
-      analtyticsTitle: "Active Job Applications",
+      analtyticsTitle: "Active Applications",
       stats: activeAppliedJobs.length,
-      desc: `A Total of ${activeAppliedJobs.length} application${
-        activeAppliedJobs.length == 0 ? "" : "s"
-      }`,
+      desc: <FaNewspaper />,
     },
     {
       analtyticsTitle: "Total Applications",
       stats: appliedJobs.length ? appliedJobs.length : 0,
-      desc: `active job Applications`,
+      desc: <IoDocuments />,
     },
     {
-      analtyticsTitle: "Active Interviews",
+      analtyticsTitle: "Scheduled Interviews",
       stats: interviews.length,
-      desc: "Scheduled Interviews",
+      desc: <FaClipboardList />,
     },
     {
-      analtyticsTitle: "Total Offers",
+      analtyticsTitle: "Offers Received",
       stats: hiredJobs.length,
-      desc: `${declinedJobs.length} Rejected Offer`,
+      desc: <FaHandshake />,
     },
   ];
 
   return (
     <>
-      <TalentNavbar activeItem={0} />
+      <TalentNavbar />
       <DashboardLayout
-        dashInfo="This is the breakdown of your application info"
+        dashInfo="Ready to land your next opportunity?"
         analytics={talentAnalytics}
         link2="/dashboard/my-jobs"
         link1="/dashboard/profile"
         status1={user?.accountStatus ? user?.accountStatus : "Loading"}
         status2={user?.preference ? user?.preference : "Loading"}
-        className="max-xslg:h-[230px] max-md:h-[200px]"
+        cardDesc1={
+          activeAppliedJobs.length == 0
+            ? "No active applications yet."
+            : `A Total of ${activeAppliedJobs.length} application${
+                activeAppliedJobs.length == 1 ? "" : "s"
+              }`
+        }
+        cardDesc2={
+          interviews.length == 0
+            ? "   No interviews scheduled yet."
+            : `You have ${interviews.length} scheduled interview${
+                interviews.length == 1 ? "" : "s"
+              }`
+        }
+        cardDesc3={
+          hiredJobs.length == 0
+            ? "No offers yet."
+            : `You have ${hiredJobs.length} offer${
+                hiredJobs.length == 1 ? "" : "s"
+              }`
+        }
+        cardTitle1="Your Applications"
+        cardTitle2="Scheduled Interviews"
+        cardTitle3="Offers"
+        user={user?.firstName ? user?.firstName : ""}
       />
     </>
   );

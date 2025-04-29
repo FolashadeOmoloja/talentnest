@@ -1,12 +1,10 @@
 "use client";
-import Image from "next/image";
+
 import { useRouter } from "next/navigation";
-import Link from "next/link";
-import CTABTN from "@/components/Elements/CTA/CTA-Button";
 import UserAvatar from "@/components/Elements/UserAvatar";
 import Logo from "@/components/Elements/Logo";
-import { FaBriefcase } from "react-icons/fa6";
 import { useSelector } from "react-redux";
+import { MdNotificationsActive } from "react-icons/md";
 
 type NavLinks = {
   id: string;
@@ -14,31 +12,13 @@ type NavLinks = {
   href: string;
 }[];
 
-type DropDown = {
-  navItem: string;
-  icon: string;
-  href: string;
-}[];
-
-const DashboardMainNavbar = ({
-  activeItem,
-  NavLinks,
-  DropDown,
-  buttonLink,
-  buttonCta,
-}: {
-  activeItem?: number;
-  NavLinks: NavLinks;
-  DropDown: DropDown;
-  buttonLink: string;
-  buttonCta: string;
-}) => {
+const DashboardMainNavbar = ({ NavLinks }: { NavLinks: NavLinks }) => {
   const router = useRouter();
   const { talentNotifications } = useSelector(
     (store: any) => store.notification
   );
   return (
-    <nav className="fixed inset-0 z-30 flex justify-between px-[100px] h-24 max-xlg:px-[50px]  max-md:hidden bg-[#EAEEFE]">
+    <nav className="fixed inset-0 max-w-[2400px] mx-auto z-30 flex justify-between px-[100px] h-24 max-xlg:px-[50px]  max-md:hidden bg-[#EAEEFE]">
       <div
         className="cursor-pointer flex items-center"
         onClick={() => router.push("/dashboard")}
@@ -50,17 +30,26 @@ const DashboardMainNavbar = ({
           {NavLinks.map((item, idx) => {
             return (
               <div
-                className="dash-nav"
+                className="dash-nav relative"
                 key={idx}
                 onClick={() => router.push(item.href)}
               >
-                {item.id}
-                {item.navItem}
+                {item.id === "Notifications" &&
+                talentNotifications.length > 0 ? (
+                  <div>
+                    <MdNotificationsActive />
+                    <div className="w-4 h-4 text-[10px] centered rounded-full bg-[#010D3E] text-white absolute -top-0.5 -right-0.5">
+                      {talentNotifications.length}
+                    </div>
+                  </div>
+                ) : (
+                  item.navItem
+                )}
               </div>
             );
           })}
         </ul>
-        <UserAvatar dropDown={DropDown} />
+        <UserAvatar />
       </div>
     </nav>
   );

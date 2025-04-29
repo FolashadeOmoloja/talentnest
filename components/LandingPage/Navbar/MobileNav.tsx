@@ -107,7 +107,7 @@ const MobileNav = ({ user }: any) => {
         <section
           className={`${
             isOpen ? "translate-y-0 opacity-1" : "-translate-y-full opacity-0"
-          } navItem bg-[#EAEEFE]`}
+          } navItem`}
         >
           {NavLinks.map((item, idx) => (
             <ul

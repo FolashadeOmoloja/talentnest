@@ -1,7 +1,7 @@
 type analytics = {
   analtyticsTitle: string;
   stats: number;
-  desc: string;
+  desc: string | JSX.Element;
 }[];
 const StatsCard = ({ analytics }: { analytics: analytics }) => {
   return (

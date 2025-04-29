@@ -1,16 +1,9 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { BsCaretDownFill } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import ClientProvider from "../Client/ClientProvider";
 
-type DropDown = {
-  navItem: string;
-  icon: string;
-  href: string;
-}[];
-
-const UserAvatar = ({ dropDown }: { dropDown: DropDown }) => {
+const UserAvatar = () => {
   const { user } = useSelector((store: any) => store.auth);
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);

@@ -7,40 +7,11 @@ type NavLinks = {
   href: string;
 }[];
 
-type DropDown = {
-  navItem: string;
-  icon: string;
-  href: string;
-}[];
-
-const DashboardNavbar = ({
-  activeItem,
-  NavLinks,
-  DropDown,
-  buttonLink,
-  buttonCta,
-}: {
-  activeItem?: number;
-  NavLinks: NavLinks;
-  DropDown: DropDown;
-  buttonLink: string;
-  buttonCta: string;
-}) => {
+const DashboardNavbar = ({ NavLinks }: { NavLinks: NavLinks }) => {
   return (
     <>
-      <DashboardMainNavbar
-        activeItem={activeItem}
-        NavLinks={NavLinks}
-        buttonLink={buttonLink}
-        buttonCta={buttonCta}
-        DropDown={DropDown}
-      />
-      <DashboardMobileNav
-        NavLinks={NavLinks}
-        buttonLink={buttonLink}
-        buttonCta={buttonCta}
-        DropDown={DropDown}
-      />
+      <DashboardMainNavbar NavLinks={NavLinks} />
+      <DashboardMobileNav NavLinks={NavLinks} />
     </>
   );
 };
