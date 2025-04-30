@@ -86,8 +86,9 @@ const page = () => {
       <DashboardLayout
         dashInfo="Ready to land your next opportunity?"
         analytics={talentAnalytics}
+        link1="/dashboard/my-jobs"
         link2="/dashboard/my-jobs"
-        link1="/dashboard/profile"
+        link3="/dashboard/profile"
         status1={user?.accountStatus ? user?.accountStatus : "Loading"}
         status2={user?.preference ? user?.preference : "Loading"}
         cardDesc1={
