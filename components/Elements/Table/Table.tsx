@@ -51,7 +51,7 @@ const Table = <T extends object>({
   };
 
   return (
-    <section className="w-full">
+    <section className="w-full text-[#010D3E]">
       <div>
         <div className="w-full overflow-x-auto flex ">
           <table

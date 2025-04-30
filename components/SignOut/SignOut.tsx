@@ -52,8 +52,8 @@ const DashboardSignOut: React.FC<DashboardSignOutProps> = ({ END_POINT }) => {
             See you again soon!
           </h3>
           <p className="text-gray-500 text-sm max-w-[350px] text-center">
-            You're about to sign out of your account. Come back anytime to
-            continue growing your journey.
+            You're about to sign out of your account. Come back anytime to pick
+            up where you left off.
           </p>
         </div>
 

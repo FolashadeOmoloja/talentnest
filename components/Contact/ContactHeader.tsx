@@ -5,7 +5,7 @@ const ContactHeader = () => {
         <span className="text-[#161519] headingspan mb-0">Let’s talk!</span>
         <h2 className="header-headline">
           How can we{" "}
-          <span className="header-headline-span max-sm:text-[#000080] max-sm:bg-none">
+          <span className="header-headline-span max-sm:text-[#010D3E] max-sm:bg-none">
             help ?
           </span>
         </h2>

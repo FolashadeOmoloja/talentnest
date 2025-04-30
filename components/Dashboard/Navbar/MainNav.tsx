@@ -12,7 +12,13 @@ type NavLinks = {
   href: string;
 }[];
 
-const DashboardMainNavbar = ({ NavLinks }: { NavLinks: NavLinks }) => {
+const DashboardMainNavbar = ({
+  NavLinks,
+  company = false,
+}: {
+  NavLinks: NavLinks;
+  company?: boolean;
+}) => {
   const router = useRouter();
   const { talentNotifications } = useSelector(
     (store: any) => store.notification
@@ -21,7 +27,9 @@ const DashboardMainNavbar = ({ NavLinks }: { NavLinks: NavLinks }) => {
     <nav className="fixed inset-0 max-w-[2400px] mx-auto z-30 flex justify-between px-[100px] h-24 max-xlg:px-[50px]  max-md:hidden bg-[#EAEEFE]">
       <div
         className="cursor-pointer flex items-center"
-        onClick={() => router.push("/dashboard")}
+        onClick={() =>
+          router.push(company ? "/hire-talent/dashboard" : "/dashboard")
+        }
       >
         <Logo />
       </div>

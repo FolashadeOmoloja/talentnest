@@ -16,7 +16,7 @@ const NavLinks = [
   {
     id: "Sign Out",
     navItem: <MdLogout />,
-    href: "/dashboard/sign-out",
+    href: "/sign-out",
   },
 ];
 

@@ -108,7 +108,7 @@ const EditJobs = ({ openJobPage }: { openJobPage?: boolean }) => {
       {!openJobPage ? (
         <div
           onClick={() => router.push("/hire-talent/dashboard/my-jobs")}
-          className="flex text-[#000080] gap-3 text-xl items-center font-bold mb-4 cursor-pointer"
+          className="flex text-[#010D3E] gap-3 text-xl items-center font-bold mb-4 cursor-pointer"
         >
           <FaArrowLeft />
           <span>Go back</span>
@@ -319,7 +319,7 @@ const EditJobs = ({ openJobPage }: { openJobPage?: boolean }) => {
                 <button
                   type="button"
                   onClick={() => addSkill(newSkill)}
-                  className="py-2 px-4 bg-[#000080] text-white rounded-md"
+                  className="py-2 px-4 bg-[#010D3E] text-white rounded-md"
                 >
                   Add
                 </button>
@@ -329,7 +329,7 @@ const EditJobs = ({ openJobPage }: { openJobPage?: boolean }) => {
                       (suggestion: string, index: number) => (
                         <li
                           key={index}
-                          className="p-2 hover:bg-[#00008015] cursor-pointer"
+                          className="p-2 hover:bg-[#010D3E15] cursor-pointer"
                           onClick={() => addSkill(suggestion)}
                         >
                           {suggestion}
@@ -362,7 +362,7 @@ const EditJobs = ({ openJobPage }: { openJobPage?: boolean }) => {
               <div className="mt-20 flex gap-10 max-xsm:gap-5">
                 <button
                   type="submit"
-                  className="w-full h-12 bg-[#000080] text-white shadow-sm rounded-lg btn-hover "
+                  className="w-full h-12 bg-[#010D3E] text-white shadow-sm rounded-lg btn-hover "
                   disabled={isSubmitting}
                 >
                   {loading ? (
@@ -392,7 +392,7 @@ const EditJobs = ({ openJobPage }: { openJobPage?: boolean }) => {
               <div className="mt-20">
                 <button
                   type="submit"
-                  className="w-full h-12 bg-[#000080] text-white shadow-sm rounded-lg btn-hover "
+                  className="w-full h-12 bg-[#010D3E] text-white shadow-sm rounded-lg btn-hover "
                   disabled={isSubmitting}
                 >
                   {loading ? (

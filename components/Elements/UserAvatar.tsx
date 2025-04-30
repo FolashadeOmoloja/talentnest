@@ -1,11 +1,9 @@
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import ClientProvider from "../Client/ClientProvider";
 
 const UserAvatar = () => {
   const { user } = useSelector((store: any) => store.auth);
-  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {

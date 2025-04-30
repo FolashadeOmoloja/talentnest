@@ -17,7 +17,7 @@ const StyledCheckbox: React.FC = () => {
       />
       <div
         className={`w-6 h-6 flex items-center justify-center border-2 transition-colors duration-200 ${
-          checked ? "bg-[#000080]" : "bg-white"
+          checked ? "bg-[#010D3E]" : "bg-white"
         } `}
       >
         {checked && (

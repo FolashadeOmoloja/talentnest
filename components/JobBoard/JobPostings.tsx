@@ -18,10 +18,18 @@ const JobPosting = ({
   filteredJobs,
   jobPostings,
   mainRoute,
+  background = "bg-[#EAEEFE]",
+  option = "bg-white text-[#010D3E]",
+  ctaBg = "bg-white",
+  ctaColor = "text-[#010D3E]",
 }: {
   filteredJobs: filteredJobs;
   jobPostings: filteredJobs;
   mainRoute?: string;
+  background?: string;
+  option?: string;
+  ctaBg?: string;
+  ctaColor?: string;
 }) => {
   return (
     <section>
@@ -32,7 +40,7 @@ const JobPosting = ({
         {filteredJobs.map((item, idx) => (
           <section
             key={idx}
-            className="bg-[#EAEEFE] rounded-xl shadow-md p-6 flex flex-col col-span-1"
+            className={`${background} rounded-xl shadow-md p-6 flex flex-col col-span-1`}
           >
             <div className="flex justify-between mb-3 items-center max-xsm:gap-1">
               <h6 className="text-xl font-semibold">{item.title}</h6>
@@ -41,8 +49,8 @@ const JobPosting = ({
                 CTA="View Job"
                 width="w-[138px] rounded-xl h-11 text-sm"
                 height="h-[44px]"
-                backGround="bg-white"
-                color="text-[#010D3E]"
+                backGround={ctaBg}
+                color={ctaColor}
               />
             </div>
             <div className="flex gap-3  mb-7 flex-wrap text-gray-700 text-sm">
@@ -65,7 +73,7 @@ const JobPosting = ({
               {item.skills.map((opt, idx) => (
                 <span
                   key={idx}
-                  className="text-xs h-8 min-w-32 bg-white rounded-xl flex items-center justify-center px-2 text-[#010D3E] font-semibold"
+                  className={`text-xs h-8 min-w-32 ${option} rounded-xl flex items-center justify-center px-2  font-semibold`}
                 >
                   {opt}
                 </span>

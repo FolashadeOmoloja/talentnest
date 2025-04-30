@@ -6,7 +6,6 @@ import JobPosting from "./JobPostings";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchJobs } from "@/redux/slices/jobPostSlice";
-import { Loader2 } from "lucide-react";
 import { AppDispatch } from "@/redux/store";
 import CustomHeader, {
   HeaderTitle,
@@ -35,11 +34,21 @@ type IsCheckedState = {
 };
 
 const JobBoard = ({
-  className,
   mainRoute = "job-details",
+  background = "bg-[#EAEEFE]",
+  option = "bg-white text-[#010D3E]",
+  filterBg = "",
+  ctaBg = "bg-white",
+  ctaColor = "text-[#010D3E]",
+  dropdownBg = "",
 }: {
-  className?: string;
   mainRoute?: string;
+  background?: string;
+  option?: string;
+  filterBg?: string;
+  ctaBg?: string;
+  ctaColor?: string;
+  dropdownBg?: string;
 }) => {
   const dispatch: AppDispatch = useDispatch();
   const jobPostings = useSelector((state: any) => state.jobPosts.jobPosts);
@@ -76,6 +85,7 @@ const JobBoard = ({
           onSearch={setFilteredJobs}
           jobPosting={jobPostings}
           changeIsCheck={setIsChecked}
+          dropdownBg={dropdownBg}
         />
         <button
           className="text-2xl text-white mb-7 sm:hidden bg-[#010D3E] w-full h-[50px] rounded-lg flex justify-center items-center shadow-md"
@@ -84,7 +94,11 @@ const JobBoard = ({
           <FaFilter />
         </button>
         <section className="flex flex-col md:flex-row md:h-full gap-10 max-slg:gap-5">
-          <div className={`filterDiv max-sm:${showFilter ? "" : "hidden"}`}>
+          <div
+            className={`filterDiv ${filterBg} max-sm:${
+              showFilter ? "" : "hidden"
+            }`}
+          >
             <Filter
               onFilter={setFilteredJobs}
               jobPostings={newJobPosting}
@@ -98,6 +112,10 @@ const JobBoard = ({
                 filteredJobs={filteredJobs}
                 jobPostings={jobPostings}
                 mainRoute={mainRoute}
+                background={background}
+                option={option}
+                ctaBg={ctaBg}
+                ctaColor={ctaColor}
               />
             </div>
           ) : (

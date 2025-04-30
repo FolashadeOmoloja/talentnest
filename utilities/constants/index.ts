@@ -148,7 +148,7 @@ export const validationRules = {
 };
 
 const colorPalette = [
-  "#000080", // Navy
+  "#010D3E", // Navy
   "#283742", // Gunmetal
   // "#00509E", // Lighter blue
   // "#87CEEB", // Sky blue

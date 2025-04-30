@@ -42,25 +42,30 @@ const Notifications = ({
 
   return (
     <section className="dashboard-container min-h-svh">
-      <h2 className="text-2xl font-bold mb-1">
+      <h2 className="text-2xl font-bold mb-1 bg-text">
         Keep track of your notifications
       </h2>
-      <div className="flex w-full text-[#000080] md:text-lg font-bold mt-16 border-b-[3px] border-[#000080]">
-        <span className={`tab active max-sm:h-[50px]`}>Notifications</span>
+      <div className="flex w-full text-[#010D3E] md:text-lg font-bold mt-16 border-b-[3px] border-[#010D3E]">
+        <span
+          className={`tab active max-sm:h-[50px]`}
+          style={{ justifyContent: "flex-start" }}
+        >
+          Notifications
+        </span>
       </div>
       <section className="mt-10">
         <section>
           {loading ? (
-            <Loader2 className=" h-14 w-14 animate-spin ml-10 mt-10 text-[#000080]" />
+            <Loader2 className=" h-14 w-14 animate-spin ml-10 mt-10 text-[#010D3E]" />
           ) : notifications.length > 0 ? (
             <ul className="gap-5 flex flex-col">
               {notifications.map((item, idx) => (
                 <li
                   key={idx}
-                  className="border-[#CCD2D9] border rounded-md p-6 max-sm:p-3 shadow-lg"
+                  className="border-[#CCD2D9] border bg-white rounded-2xl p-6 max-sm:p-3 shadow-md"
                 >
-                  <div className="flex gap-14 max-sm:gap-4">
-                    <div className="bg-[#000080] text-[#00B5E8] centered rounded-full min-w-12 h-12">
+                  <div className="flex gap-7 items-center max-sm:gap-4">
+                    <div className="bg-[#010D3E] text-[#eaeefe] centered rounded-full min-w-12 h-12">
                       <IoMdNotifications className="text-2xl" />
                     </div>
                     <div className="max-sm:text-sm notice-div">
@@ -88,7 +93,7 @@ const Notifications = ({
               ))}
               <button
                 onClick={deleteAllNotification}
-                className="py-4 px-6 max-w-[300px] mt-10 bg-[#000080] text-white rounded-md font-semibold btn-hover"
+                className="py-4 px-6 max-w-[300px] mt-10 bg-[#010D3E] text-white rounded-md font-semibold btn-hover"
               >
                 Clear Notification
               </button>

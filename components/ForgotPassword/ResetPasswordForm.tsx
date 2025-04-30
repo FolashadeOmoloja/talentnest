@@ -77,7 +77,7 @@ const ResetPasswordForm = ({ company }: { company: boolean }) => {
         {/* {isValidToken ? (
           <div className="ml-[-35px] cursor-pointer">
             <Image
-              src={"/images/homepage/frack.png"}
+              src={"/images/homepage/TalentNest.png"}
               alt={"logo"}
               width={191}
               height={96}
@@ -88,7 +88,7 @@ const ResetPasswordForm = ({ company }: { company: boolean }) => {
         ) : (
           <div className="ml-[-35px] w-full centered cursor-pointer">
             <Image
-              src={"/images/homepage/frack.png"}
+              src={"/images/homepage/TalentNest.png"}
               alt={"logo"}
               width={191}
               height={96}

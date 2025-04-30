@@ -1,7 +1,10 @@
 import Logo from "@/components/Elements/Logo";
 
 const loading = () => (
-  <section className="min-h-screen flex items-center justify-center bg-gradient-to-r from-[#EAEEFE] via-[#EAEEFE]  to-[#183dc23d]">
+  <section
+    className=" flex items-center justify-center bg-gradient-to-r from-[#EAEEFE] via-[#EAEEFE]  to-[#183dc23d]"
+    style={{ height: "calc(100svh - 112px)" }}
+  >
     <div className="flex flex-col items-center gap-6">
       {/* Logo Text */}
       <Logo />

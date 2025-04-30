@@ -7,10 +7,16 @@ type NavLinks = {
   href: string;
 }[];
 
-const DashboardNavbar = ({ NavLinks }: { NavLinks: NavLinks }) => {
+const DashboardNavbar = ({
+  NavLinks,
+  company = false,
+}: {
+  NavLinks: NavLinks;
+  company?: boolean;
+}) => {
   return (
     <>
-      <DashboardMainNavbar NavLinks={NavLinks} />
+      <DashboardMainNavbar NavLinks={NavLinks} company={company} />
       <DashboardMobileNav NavLinks={NavLinks} />
     </>
   );

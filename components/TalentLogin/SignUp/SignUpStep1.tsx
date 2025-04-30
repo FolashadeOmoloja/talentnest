@@ -14,13 +14,13 @@ const SignUpStep1 = () => {
   return (
     // <section className="flex">
     //   <div
-    //     className="basis-1/2 bg-cover bg-no-repeat bg-[#000080] relative max-md:hidden"
+    //     className="basis-1/2 bg-cover bg-no-repeat bg-[#010D3E] relative max-md:hidden"
     //     style={{ backgroundImage: bgImage }}
     //   >
     //     <p className="login-text top-[30px] xlg:max-w-[230px] ">
     //       <span className="font-semibold text-base">
     //         {active === 4
-    //           ? "Welcome to Frack!"
+    //           ? "Welcome to TalentNest!"
     //           : " Our AI-driven platform streamlines the process"}
     //       </span>{" "}
     //       <br />

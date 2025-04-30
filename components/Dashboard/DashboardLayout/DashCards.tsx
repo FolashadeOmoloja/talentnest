@@ -25,7 +25,7 @@ const DashCards = ({
       <span className="text-3xl font-bold ">{status}</span>
       <Link
         href={link}
-        className="flex items-center gap-2 text-[#000080] text-sm font-semibold"
+        className="flex items-center gap-2 text-[#010D3E] text-sm font-semibold"
       >
         <span>{linkName}</span>
         <FaArrowRight className="icon-animate" />

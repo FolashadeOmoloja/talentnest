@@ -9,7 +9,7 @@ const StatsCard = ({ analytics }: { analytics: analytics }) => {
       {analytics.map((item, idx) => (
         <div
           className={`col-span-1 ${
-            idx === 0 ? "bg-[#000080] text-white" : "border border-[#E0E1E6] "
+            idx === 0 ? "bg-[#010D3E] text-white" : "border border-[#E0E1E6] "
           } h-[240px] w-full rounded-md py-12  pl-9 flex flex-col gap-5`}
           key={idx}
         >

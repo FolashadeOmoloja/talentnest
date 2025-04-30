@@ -127,7 +127,7 @@ const Joblisting = ({ params }: { params: { jobId: string } }) => {
             <div className="pb-14">
               <CTABTN
                 route={""}
-                backGround="bg-gray-600 border-gray-600 cursor-not-allowed"
+                backGround="bg-gray-800 border-gray-600 cursor-not-allowed"
                 width="w-[175px]"
                 disabled
                 CTA={"Already Applied"}

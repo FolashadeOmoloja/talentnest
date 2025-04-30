@@ -4,7 +4,7 @@ import TalentNavbar from "@/components/Dashboard/TalentDashboard/TalentNavbar";
 const MyJobsPage = () => {
   return (
     <>
-      <TalentNavbar activeItem={1} />
+      <TalentNavbar />
       <MyJobTables />
     </>
   );

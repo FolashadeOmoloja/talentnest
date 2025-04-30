@@ -11,7 +11,7 @@ const SettingsPage = () => {
   );
   return (
     <>
-      <HireTalentNav activeItem={0} />
+      <HireTalentNav />
       <Notifications
         notifications={companyNotifications}
         loading={loading}

@@ -13,7 +13,13 @@ type NavLinks = {
   href: string;
 }[];
 
-const DashboardMobileNav = ({ NavLinks }: { NavLinks: NavLinks }) => {
+const DashboardMobileNav = ({
+  NavLinks,
+  company = false,
+}: {
+  NavLinks: NavLinks;
+  company?: boolean;
+}) => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -31,7 +37,9 @@ const DashboardMobileNav = ({ NavLinks }: { NavLinks: NavLinks }) => {
         )}
         <div
           className="cursor-pointer flex items-center"
-          onClick={() => router.push("/dashboard")}
+          onClick={() =>
+            router.push(company ? "/hire-talent/dashboard" : "/dashboard")
+          }
         >
           <Logo width="35" height="35" text="text-[20px]" gap="gap-1" />
         </div>

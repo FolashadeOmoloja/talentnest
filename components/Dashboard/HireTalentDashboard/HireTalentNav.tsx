@@ -1,39 +1,29 @@
+import { MdLogout, MdNotifications } from "react-icons/md";
 import DashboardNavbar from "../Navbar/Navbar";
+import { FaBriefcase } from "react-icons/fa";
 
 const NavLinks = [
   {
-    navItem: "Dashboard",
-    href: "/hire-talent/dashboard",
-  },
-  {
-    navItem: "Jobs",
+    id: "Jobs",
+    navItem: <FaBriefcase />,
     href: "/hire-talent/dashboard/my-jobs",
   },
-];
-
-const DropDown = [
   {
-    navItem: "Notifications",
-    icon: "/images/dashboard/icon1.svg",
+    id: "Notifications",
+    navItem: <MdNotifications />,
     href: "/hire-talent/dashboard/notifications",
   },
   {
-    navItem: "Sign Out",
-    icon: "/images/dashboard/icon2.svg",
+    id: "Sign Out",
+    navItem: <MdLogout />,
     href: "/hire-talent/sign-out",
   },
 ];
 
-const HireTalentNav = ({ activeItem }: { activeItem?: number }) => {
+const HireTalentNav = () => {
   return (
     <>
-      <DashboardNavbar
-        activeItem={activeItem}
-        NavLinks={NavLinks}
-        DropDown={DropDown}
-        buttonCta="Add Job"
-        buttonLink="/hire-talent/dashboard/add-job"
-      />
+      <DashboardNavbar NavLinks={NavLinks} company />
     </>
   );
 };

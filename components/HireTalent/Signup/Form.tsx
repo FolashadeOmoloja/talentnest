@@ -288,7 +288,7 @@ const HireTalentSignUpForm = () => {
             <input
               type="checkbox"
               id="approval-check"
-              className="rounded-md h-5 w-5 accent-[#000080]"
+              className="rounded-md h-5 w-5 accent-[#010D3E]"
               {...register("privacyConsent", {
                 required: companyValidationRules.privacyConsent.required,
               })}
@@ -297,8 +297,8 @@ const HireTalentSignUpForm = () => {
               htmlFor="approval-check"
               className="ml-2 text-sm text-[#667185]"
             >
-              By submitting my personal data, I consent to Frack collecting,
-              processing, and storing my information.
+              By submitting my personal data, I consent to TalentNest
+              collecting, processing, and storing my information.
             </label>
           </div>
           {errors.privacyConsent && (

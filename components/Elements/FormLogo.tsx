@@ -6,7 +6,7 @@ const FormLogo = () => {
   return (
     <div className="ml-[-35px] cursor-pointer" onClick={() => router.push("/")}>
       <Image
-        src={"/images/homepage/frack.png"}
+        src={"/images/homepage/TalentNest.png"}
         alt={"logo"}
         width={191}
         height={96}

@@ -4,8 +4,16 @@ import JobBoard from "@/components/JobBoard/JobBoard";
 const TalentJobPage = () => {
   return (
     <>
-      <TalentNavbar activeItem={1} />
-      <JobBoard className="relative top-[96px]" mainRoute="./dashboard/jobs" />
+      <TalentNavbar />
+      <JobBoard
+        option="bg-[#010D3E] text-white"
+        mainRoute="./dashboard/jobs"
+        background="bg-white"
+        filterBg="bg-white"
+        ctaBg="bg-[#010D3E]"
+        ctaColor="text-white"
+        dropdownBg="bg-white"
+      />
     </>
   );
 };

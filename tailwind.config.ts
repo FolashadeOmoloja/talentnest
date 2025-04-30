@@ -14,8 +14,8 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         "custom-linear-gradient":
-          "linear-gradient(90deg, #000080 0%, #22CCED 49.5%, #000080 100%)",
-        "faq-gradient": "linear-gradient(180deg, #000080 0%, #00002F 96.94%)",
+          "linear-gradient(90deg, #010D3E 0%, #22CCED 49.5%, #010D3E 100%)",
+        "faq-gradient": "linear-gradient(180deg, #010D3E 0%, #00002F 96.94%)",
         "contact-bg": "url('/images/homepage/CTAContact.svg')",
         "picture-bg": "url('/images/homepage/picturebg.svg')",
       },

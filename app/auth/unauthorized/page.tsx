@@ -17,7 +17,7 @@ const Unauthorized = () => {
         </p>
         <Link
           href="/"
-          className="px-6 py-3 bg-[#000080] text-white font-semibold rounded btn-hover "
+          className="px-6 py-3 bg-[#010D3E] text-white font-semibold rounded btn-hover "
         >
           Go to Home
         </Link>

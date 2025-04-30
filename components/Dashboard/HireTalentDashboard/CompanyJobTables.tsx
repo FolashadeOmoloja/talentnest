@@ -57,9 +57,9 @@ const CompanyJobTables = () => {
     const meetingUrl = "";
 
     const senderMessage = `
- ${user.companyName} has requested a meeting with Frack.
+ ${user.companyName} has requested a meeting with TalentNest.
   `;
-    const receiverMessage = `You’ve successfully requested a meeting with Frack! We’ll get back to you soon to confirm the details.`;
+    const receiverMessage = `You’ve successfully requested a meeting with TalentNest! We’ll get back to you soon to confirm the details.`;
 
     createNotice(user._id, senderMessage, receiverMessage, meetingUrl);
   };
@@ -87,7 +87,7 @@ const CompanyJobTables = () => {
 
       {changeTable === 0 ? (
         loading ? (
-          <Loader2 className=" h-14 w-14 animate-spin ml-10 mt-10 text-[#000080]" />
+          <Loader2 className=" h-14 w-14 animate-spin ml-10 mt-10 text-[#010D3E]" />
         ) : openedJobs.length === 0 ? (
           <p className="mt-10 text-[#000040] italic text-2xl">
             No data available at the moment.
@@ -100,7 +100,7 @@ const CompanyJobTables = () => {
         )
       ) : changeTable === 1 ? (
         loading ? (
-          <Loader2 className=" h-14 w-14 animate-spin ml-10 mt-10 text-[#000080]" />
+          <Loader2 className=" h-14 w-14 animate-spin ml-10 mt-10 text-[#010D3E]" />
         ) : closedJobs.length === 0 ? (
           <p className="mt-10 text-[#000040] italic text-2xl">
             No data available at the moment.
@@ -122,7 +122,7 @@ const CompanyJobTables = () => {
       ) : null}
       <button
         onClick={onSubmit}
-        className="py-4 px-6 max-w-[300px] mt-10 bg-[#000080] text-white rounded-md font-semibold btn-hover"
+        className="py-4 px-6 max-w-[300px] mt-10 bg-[#010D3E] text-white rounded-md font-semibold btn-hover"
       >
         {noticeLoading ? (
           <div className="flex items-center justify-center">
@@ -130,11 +130,11 @@ const CompanyJobTables = () => {
             Requesting Meeting. . .
           </div>
         ) : (
-          "Request For Meeting with Frack"
+          "Request For Meeting with TalentNest"
         )}
       </button>
       <p className="text-gray-600 text-sm mb-4 italic">
-        (Request for a meeting with frack to discuss job details)
+        (Request for a meeting with TalentNest to discuss job details)
       </p>
     </section>
   );

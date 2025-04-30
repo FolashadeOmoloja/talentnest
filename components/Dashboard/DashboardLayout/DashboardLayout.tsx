@@ -21,6 +21,7 @@ const DashboardLayout = ({
   cardTitle2,
   cardTitle3,
   user,
+  company = false,
 }: {
   dashInfo: string;
   analytics: analytics;
@@ -36,6 +37,7 @@ const DashboardLayout = ({
   cardTitle2: string;
   cardTitle3: string;
   user?: string;
+  company?: boolean;
 }) => {
   const router = useRouter();
   return (

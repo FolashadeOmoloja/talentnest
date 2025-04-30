@@ -279,7 +279,7 @@ const AddJobs = () => {
                 <button
                   type="button"
                   onClick={() => addSkill(newSkill)}
-                  className="py-2 px-4 bg-[#000080] text-white rounded-md"
+                  className="py-2 px-4 bg-[#010D3E] text-white rounded-md"
                 >
                   Add
                 </button>
@@ -289,7 +289,7 @@ const AddJobs = () => {
                       (suggestion: string, index: number) => (
                         <li
                           key={index}
-                          className="p-2 hover:bg-[#00008015] cursor-pointer"
+                          className="p-2 hover:bg-[#010D3E15] cursor-pointer"
                           onClick={() => addSkill(suggestion)}
                         >
                           {suggestion}
@@ -319,7 +319,7 @@ const AddJobs = () => {
             </div>
             <button
               type="submit"
-              className="w-full h-12 bg-[#000080] text-white shadow-sm rounded-lg btn-hover mt-20"
+              className="w-full h-12 bg-[#010D3E] text-white shadow-sm rounded-lg btn-hover mt-20"
               disabled={isSubmitting}
             >
               {loading ? (

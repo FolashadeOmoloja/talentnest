@@ -10,6 +10,8 @@ import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { setJob } from "@/redux/slices/jobSlice";
 import { useEditJob } from "@/hooks/job-hook";
+import { FaBriefcase, FaLocationDot, FaMapPin } from "react-icons/fa6";
+import { BsCashStack } from "react-icons/bs";
 
 type Company = {
   companyName: string;
@@ -40,8 +42,14 @@ export const activeColumns: Column<JobApplication>[] = [
     Cell: ({ row }: { row: { original: JobApplication } }) => {
       return (
         <div className="flex flex-col gap-4">
-          <span>{row.original.jobProximity}</span>
-          <span>{row.original.location}</span>
+          <span className="flex items-center gap-2">
+            <FaMapPin color="#010D3E" />
+            {row.original.jobProximity}
+          </span>
+          <span className="flex items-center gap-2">
+            <FaLocationDot color="#010D3E" />
+            {row.original.location}
+          </span>
         </div>
       );
     },
@@ -52,10 +60,13 @@ export const activeColumns: Column<JobApplication>[] = [
     Cell: ({ row }: { row: { original: JobApplication } }) => {
       return (
         <div className="flex flex-col gap-4">
-          <span>{row.original.company.companyName}</span>
-          <span>
-            {" "}
-            ${row.original.salaryRange1} - ${row.original.salaryRange2}
+          <span className="flex items-center gap-2">
+            <FaBriefcase color="#010D3E" />
+            {row.original.company.companyName}
+          </span>
+          <span className="flex items-center gap-2">
+            <BsCashStack color="#010D3E" />${row.original.salaryRange1} - $
+            {row.original.salaryRange2}
           </span>
         </div>
       );
@@ -66,7 +77,7 @@ export const activeColumns: Column<JobApplication>[] = [
     accessor: "status",
     Cell: ({ row }: { row: { original: JobApplication } }) => {
       return (
-        <button className="w-[138px] h-[50px] bg-[#D8D8D8] text-[#7C8698] text-sm rounded-md">
+        <button className="w-[138px] h-[50px] bg-[#D8D8D8] text-gray-500 text-sm rounded-md">
           {row.original.status}
         </button>
       );
@@ -256,7 +267,7 @@ export const hiredCandidatesColumn: Column<SuccessApplications>[] = [
                 />
               ) : (
                 <section
-                  className={`w-[50px] h-[50px]  text-xl text-white  font-bold centered bg-[#000080]`}
+                  className={`w-[50px] h-[50px]  text-xl text-white  font-bold centered bg-[#010D3E]`}
                 >
                   {row.original.talent.firstName[0]}
                 </section>

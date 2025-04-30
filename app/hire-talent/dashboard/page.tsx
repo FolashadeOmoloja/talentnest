@@ -94,7 +94,7 @@ const page = () => {
   ];
   return (
     <>
-      <HireTalentNav activeItem={0} />
+      <HireTalentNav />
       <DashboardLayout
         dashInfo="This provides a summary of your application details"
         analytics={companyAnalytics}

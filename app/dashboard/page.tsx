@@ -29,34 +29,9 @@ const page = () => {
 
   const activeAppliedJobs =
     appliedJobs.length != 0 ? filterJobs("Under Review") : [];
-  const declinedJobs = appliedJobs.length != 0 ? filterJobs("declined") : [];
   const interviews = appliedJobs.length != 0 ? filterJobs("Interview") : [];
   const hiredJobs = appliedJobs.length != 0 ? filterJobs("hired") : [];
 
-  // const talentAnalytics = [
-  //   {
-  //     analtyticsTitle: "Active Job Applications",
-  //     stats: activeAppliedJobs.length,
-  //     desc: `A Total of ${activeAppliedJobs.length} application${
-  //       activeAppliedJobs.length == 0 ? "" : "s"
-  //     }`,
-  //   },
-  //   {
-  //     analtyticsTitle: "Total Applications",
-  //     stats: appliedJobs.length ? appliedJobs.length : 0,
-  //     desc: `active job Applications`,
-  //   },
-  //   {
-  //     analtyticsTitle: "Active Interviews",
-  //     stats: interviews.length,
-  //     desc: "Scheduled Interviews",
-  //   },
-  //   {
-  //     analtyticsTitle: "Total Offers",
-  //     stats: hiredJobs.length,
-  //     desc: `${declinedJobs.length} Rejected Offer`,
-  //   },
-  // ];
   const talentAnalytics = [
     {
       analtyticsTitle: "Active Applications",
@@ -87,14 +62,14 @@ const page = () => {
         dashInfo="Ready to land your next opportunity?"
         analytics={talentAnalytics}
         link1="/dashboard/my-jobs"
-        link2="/dashboard/my-jobs"
-        link3="/dashboard/profile"
+        link2="/dashboard/interviews"
+        link3="/dashboard/offers"
         status1={user?.accountStatus ? user?.accountStatus : "Loading"}
         status2={user?.preference ? user?.preference : "Loading"}
         cardDesc1={
           activeAppliedJobs.length == 0
             ? "No active applications yet."
-            : `A Total of ${activeAppliedJobs.length} application${
+            : `A Total of ${activeAppliedJobs.length} active application${
                 activeAppliedJobs.length == 1 ? "" : "s"
               }`
         }

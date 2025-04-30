@@ -44,7 +44,7 @@ export const HireLeftSection = ({ user }: { user: userCompanyObject }) => {
         <span className="font-bold text-gray-500 mt-6">
           {user?.location}, {user?.country}
         </span>
-        <div className="py-4 px-6 centered bg-[#000080] text-white rounded-2xl shadow-md  font-semibold mt-11">
+        <div className="py-4 px-6 centered bg-[#010D3E] text-white rounded-2xl shadow-md  font-semibold mt-11">
           Profile status: {user?.accountStatus}
         </div>
       </div>

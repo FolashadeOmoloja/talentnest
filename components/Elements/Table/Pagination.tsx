@@ -25,7 +25,7 @@ const Pagination: FC<IProps> = ({ pageCount, handlePageClick }) => {
         containerClassName="pagination-list"
         disabledLinkClassName="cursor-not-allowed"
         activeLinkClassName="active"
-        className="flex text-[#000080] font-semibold gap-2"
+        className="flex text-[#010D3E] font-semibold gap-2"
       />
     </div>
   );

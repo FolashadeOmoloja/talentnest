@@ -256,7 +256,7 @@ const TalentProfileForm = ({
               <input
                 type="file"
                 accept=".pdf, .doc, .docx"
-                className="h-full w-full file:text-white file:rounded-md file:cursor-pointer file:border-0 file:p-2 file:bg-[#000080] mt-[6px] text-sm file:mr-6"
+                className="h-full w-full file:text-white file:rounded-md file:cursor-pointer file:border-0 file:p-2 file:bg-[#010D3E] mt-[6px] text-sm file:mr-6"
                 {...register("resume", {
                   required: validationRules.resume.required,
                   onChange: (e) => handleFileChange(e),

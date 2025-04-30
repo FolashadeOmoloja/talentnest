@@ -40,11 +40,13 @@ const JobSearchBar = ({
   jobPosting,
   onNewSearch,
   changeIsCheck,
+  dropdownBg = "",
 }: {
   onSearch: React.Dispatch<React.SetStateAction<filteredJobs>>;
   onNewSearch: React.Dispatch<React.SetStateAction<filteredJobs>>;
   changeIsCheck: React.Dispatch<React.SetStateAction<IsCheckedState>>;
   jobPosting: filteredJobs;
+  dropdownBg?: string;
 }) => {
   const [isOpen, setIsOpen] = useState<IsOpenState>({});
   const [role, setRole] = useState("");
@@ -140,7 +142,7 @@ const JobSearchBar = ({
             className="relative sm:h-full h-[50px]  sm:basis-1/3 w-full"
           >
             <button
-              className={`dropdown-button h-full w-full rounded-xl centered gap-3 max-md:gap-1 max-sm:gap-3 max-md:px-1  ${
+              className={`dropdown-button ${dropdownBg} h-full w-full rounded-xl centered gap-3 max-md:gap-1 max-sm:gap-3 max-md:px-1  ${
                 idx == 1 || idx == 2 ? "sm:border-l-0" : ""
               }`}
               onClick={() => showOptions(idx)}

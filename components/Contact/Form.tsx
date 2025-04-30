@@ -150,7 +150,7 @@ const Form = () => {
       </div>
       <button
         type="submit"
-        className="w-[180px] max-xxsm:w-full h-12 bg-white text-[#000080] shadow-sm rounded-lg font-semibold"
+        className="w-[180px] max-xxsm:w-full h-12 bg-white text-[#010D3E] shadow-sm rounded-lg font-semibold"
         disabled={isSubmitting}
       >
         {loading ? (

@@ -121,7 +121,7 @@ const ProfileDetails = <T extends boolean>({
                   onClick={() => {
                     setIsChangeForm(1);
                   }}
-                  className="py-4 px-6 bg-[#000080] text-white rounded-md font-semibold mt-5 btn-hover"
+                  className="py-4 px-6 bg-[#010D3E] text-white rounded-md font-semibold mt-5 btn-hover"
                 >
                   Edit Profile
                 </button>
@@ -129,7 +129,7 @@ const ProfileDetails = <T extends boolean>({
                   onClick={() => {
                     setIsChangeForm(2);
                   }}
-                  className="py-4 px-6 bg-[#000080] text-white rounded-md font-semibold mt-5 btn-hover"
+                  className="py-4 px-6 bg-[#010D3E] text-white rounded-md font-semibold mt-5 btn-hover"
                 >
                   Reset password
                 </button>

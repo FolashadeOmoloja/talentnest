@@ -157,7 +157,7 @@ const FormThree = ({
         ) : null}
         <Dropdown
           ItemsArr={["Twitter", "Whatsapp", "LinkedIn", "Referral"]}
-          label="How did you hear about Frack? (optional)"
+          label="How did you hear about TalentNest? (optional)"
           placeholder="Select an option"
           name={"channel"}
           required={false}

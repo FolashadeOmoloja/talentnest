@@ -11,7 +11,7 @@ const SettingsPage = () => {
   );
   return (
     <>
-      <TalentNavbar activeItem={0} />
+      <TalentNavbar />
       <Notifications
         notifications={talentNotifications}
         loading={loading}
