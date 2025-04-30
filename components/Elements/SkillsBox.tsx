@@ -69,9 +69,9 @@ const SkillsBox: React.FC<SkillsProps> = ({ initialSkills }) => {
   };
 
   return (
-    <section className="bg-white rounded-md mt-10 p-9 max-slg:p-7 max-sm:px-4">
-      <div className="flex justify-between text-[#000080] font-bold text-lg relative">
-        <span className="text-[#1B2C42]">Skills</span>
+    <section className="bg-white rounded-2xl shadow-md mt-10 p-9 max-slg:p-7 max-sm:px-4">
+      <div className="flex justify-between text-[#010d3e] font-bold text-lg relative">
+        <span className="bg-text">Skills</span>
         <button
           onClick={() => setIsOpen(!isOpen)}
           disabled={skillsArr.length >= 6 || loading}
@@ -92,7 +92,7 @@ const SkillsBox: React.FC<SkillsProps> = ({ initialSkills }) => {
           </div>
         )}
       </div>
-      <ul className="text-[#7C8698] font-medium mt-8 flex flex-col gap-3">
+      <ul className="text-gray-500 font-medium mt-8 flex flex-col gap-3">
         {skillsArr.map((item, idx) => (
           <li
             className="flex justify-between cursor-pointer items-center"
@@ -100,7 +100,7 @@ const SkillsBox: React.FC<SkillsProps> = ({ initialSkills }) => {
           >
             <span>{item}</span>
             <span
-              className="text-sm text-[#000080]"
+              className="text-sm text-[#010d3e]"
               onClick={() => handleRemoveSkill(idx)}
             >
               <FaTrashCan />

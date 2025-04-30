@@ -30,7 +30,7 @@ const ProfileDetails = <T extends boolean>({
   return (
     <section className="basis-[70%]">
       <section
-        className={`bg-white rounded-md  ${
+        className={`bg-white rounded-2xl shadow-md  ${
           isChangeForm === 1 && !skillsBool ? "lg:h-full" : "lg:h-[680px]"
         } p-9 max-slg:p-7 max-sm:px-4 transition duration-500`}
       >
@@ -68,12 +68,12 @@ const ProfileDetails = <T extends boolean>({
                 title={"Resume"}
                 filename={(user as userObject)?.resume}
               />
-              <div className="flex gap-6 max-xsm:flex-col">
+              <div className="flex gap-6 max-xsm:flex-col mt-5 ">
                 <button
                   onClick={() => {
                     setIsChangeForm(1);
                   }}
-                  className="py-4 px-6 bg-[#000080] text-white rounded-md font-semibold mt-5 btn-hover"
+                  className="form-btn max-w-[129px] "
                 >
                   Edit Profile
                 </button>
@@ -81,7 +81,7 @@ const ProfileDetails = <T extends boolean>({
                   onClick={() => {
                     setIsChangeForm(2);
                   }}
-                  className="py-4 px-6 bg-[#000080] text-white rounded-md font-semibold mt-5 btn-hover"
+                  className="form-btn max-w-[167px]   "
                 >
                   Reset password
                 </button>

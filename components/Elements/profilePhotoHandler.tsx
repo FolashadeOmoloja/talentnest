@@ -34,7 +34,7 @@ const ProfilePhotoHandler: React.FC<ProfilePhotoProps> = ({ user, talent }) => {
 
   return (
     <div className="relative">
-      <div className="h-[200px] w-[200px] rounded-full overflow-hidden border border-[#000080]">
+      <div className="h-[200px] w-[200px] rounded-full overflow-hidden border-4 border-[#010D3E] ">
         {user?.profileImage ? (
           <img
             src={user?.profileImage}
@@ -44,7 +44,7 @@ const ProfilePhotoHandler: React.FC<ProfilePhotoProps> = ({ user, talent }) => {
         ) : (
           <div
             className={`w-full h-full text-white text-8xl font-bold centered`}
-            style={{ background: user?.hex }}
+            style={{ background: "#010D3E" }}
           >
             {talent
               ? user?.firstName[0]
@@ -55,14 +55,14 @@ const ProfilePhotoHandler: React.FC<ProfilePhotoProps> = ({ user, talent }) => {
         {loading ? (
           <div
             className="w-10 h-10 rounded-full border-4 border-white text-white absolute bottom-[-15px] cursor-pointer left-[40%] z-10 centered"
-            style={{ background: user?.hex }}
+            style={{ background: "#010D3E" }}
           >
             <Loader2 className="animate-spin" />
           </div>
         ) : (
           <div
             className="w-10 h-10 rounded-full border-4 border-white text-white absolute bottom-[-15px] cursor-pointer left-[40%] z-10 centered"
-            style={{ background: user?.hex }}
+            style={{ background: "#010D3E" }}
             onClick={handleCameraClick}
           >
             <FaCamera />

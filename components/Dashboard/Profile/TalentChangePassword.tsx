@@ -73,9 +73,7 @@ const TalentChangePassword = ({
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h3 className="text-[#1B1818] font-semibold text-2xl mb-8">
-        Change Password
-      </h3>
+      <h3 className="bg-text font-semibold text-2xl mb-8">Change Password</h3>
       <div className="flex formdivs flex-col mb-6 gap-[6px]">
         <label>Current Password</label>
         <div className="relative">
@@ -140,7 +138,7 @@ const TalentChangePassword = ({
         >
           Cancel
         </div>
-        <button type="submit" className="login-btn" disabled={isSubmitting}>
+        <button type="submit" className="form-btn" disabled={isSubmitting}>
           {loading ? (
             <div className="flex items-center justify-center">
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />

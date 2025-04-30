@@ -245,7 +245,7 @@ const TalentProfileForm = ({
               </a>
               <button
                 type="button"
-                className="text-[#000080] slg:absolute right-0 top-0 block"
+                className="text-[#010d3e] slg:absolute right-0 top-0 block"
                 onClick={() => setIsEditingResume(true)}
               >
                 Edit Resume
@@ -278,12 +278,12 @@ const TalentProfileForm = ({
       </div>
       <div className="mt-5 flex gap-10 max-xsm:gap-5">
         <div
-          className="login-btn centered gap-3 cursor-pointer icon-animate"
+          className="login-btn centered cursor-pointer"
           onClick={() => changeState(0)}
         >
           Cancel
         </div>
-        <button type="submit" className="login-btn" disabled={isSubmitting}>
+        <button type="submit" className="form-btn" disabled={isSubmitting}>
           {loading ? (
             <div className="flex items-center justify-center">
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
