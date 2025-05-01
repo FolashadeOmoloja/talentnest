@@ -1,4 +1,4 @@
-import { Briefcase, Star, User } from "lucide-react";
+import { handleSendNotification } from "@/hooks/notification-hook";
 import { useRouter } from "next/navigation";
 
 type analytics = {
@@ -21,6 +21,7 @@ const DashboardLayout = ({
   cardTitle2,
   cardTitle3,
   user,
+  userId,
   company = false,
 }: {
   dashInfo: string;
@@ -37,6 +38,7 @@ const DashboardLayout = ({
   cardTitle2: string;
   cardTitle3: string;
   user?: string;
+  userId?: string;
   company?: boolean;
 }) => {
   const router = useRouter();
@@ -79,19 +81,21 @@ const DashboardLayout = ({
               <div className="p-6 space-y-4">
                 <ProfileCards
                   gif="/images/dashboard/user.gif"
-                  title="Work Preference"
+                  title={company ? "Profile Status" : "Work Preference"}
                   status={status1}
                 />
                 <ProfileCards
                   gif="/images/dashboard/suitcase.gif"
-                  title="Profile Status"
+                  title={company ? "Work mode preference" : "Profile Status"}
                   status={status2}
                 />
-                <ProfileCards
-                  gif="/images/dashboard/star.gif"
-                  title="Profile Strength"
-                  status="80%"
-                />
+                {company ? null : (
+                  <ProfileCards
+                    gif="/images/dashboard/star.gif"
+                    title="Profile Strength"
+                    status="80%"
+                  />
+                )}
 
                 <button
                   onClick={() => router.push("/dashboard/profile")}
@@ -101,27 +105,42 @@ const DashboardLayout = ({
                 </button>
               </div>
             </div>
-            <StatsCard
-              title={"Suggested Jobs"}
-              desc={"No suggestions yet. Complete your profile to get matched!"}
-              link={"/dashboard/jobs"}
-            />
+            {company ? (
+              <StatsCard
+                title={"Book an appointment with TalentNest"}
+                desc={
+                  "Schedule a session to explore how TalentNest can help you hire smarter."
+                }
+                link={""}
+                requestMeeting
+                user={user}
+                userId={userId}
+              />
+            ) : (
+              <StatsCard
+                title={"Suggested Jobs"}
+                desc={
+                  "No suggestions yet. Complete your profile to get matched!"
+                }
+                link={"/dashboard/jobs"}
+              />
+            )}
           </div>
         </div>
 
         {/* Bottom Section - Talent Tips and Community */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <StatsCard
-            title={"Talent Tips"}
+            title={company ? "Nest Hub" : "Talent Tips"}
             desc={
-              "Check out our guides on creating the perfect CV and preparing for interviews."
+              "Check out our blog and faq section to help you guide your journey with TalentNest."
             }
             link={"/blog"}
           />
           <StatsCard
-            title={"Community Updates"}
+            title={"Nest HelpDesk"}
             desc={
-              "Join upcoming webinars and hiring events hosted by TalentNest."
+              "Need help? Our help desk is here to assist you with any questions or concerns."
             }
             link={"/help-desk"}
           />
@@ -137,16 +156,36 @@ const StatsCard = ({
   title,
   desc,
   link,
+  requestMeeting = false,
+  user,
+  userId,
 }: {
   title: string;
   desc: string;
   link: string;
+  requestMeeting?: boolean;
+  user?: string;
+  userId?: string;
 }) => {
+  const { onSubmit: createNotice } = handleSendNotification();
   const router = useRouter();
+  const scheduleMeet = () => {
+    const meetingUrl = "";
+
+    const senderMessage = `
+ ${user} has requested a meeting with TalentNest.
+  `;
+    const receiverMessage = `You’ve successfully requested a meeting with TalentNest! We’ll get back to you soon to confirm the details.`;
+
+    createNotice(userId, senderMessage, receiverMessage, meetingUrl);
+  };
+  const routePage = () => {
+    router.push(link);
+  };
   return (
     <div
       className="rounded-2xl shadow-md bg-white cursor-pointer p-6"
-      onClick={() => router.push(link)}
+      onClick={requestMeeting ? scheduleMeet : routePage}
     >
       <h2 className="text-xl bg-text font-semibold mb-4">{title}</h2>
       <div className="space-y-2">

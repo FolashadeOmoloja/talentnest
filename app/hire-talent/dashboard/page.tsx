@@ -10,6 +10,9 @@ import {
 import { JobPosted, userObject } from "@/utilities/constants/typeDef";
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
+import { BiSolidBadgeCheck } from "react-icons/bi";
+import { FaPeopleGroup, FaPersonCircleCheck } from "react-icons/fa6";
+import { IoDocuments } from "react-icons/io5";
 import { useSelector } from "react-redux";
 
 interface Application {
@@ -69,39 +72,84 @@ const page = () => {
     }
   });
 
+  // const companyAnalytics = [
+  //   {
+  //     analtyticsTitle: "Total Job Offers",
+  //     stats: jobs.length != 0 ? jobs.length : 0,
+  //     desc: `${openedJobs.length} open job listings`,
+  //   },
+  //   {
+  //     analtyticsTitle: "Total Applicants",
+  //     stats: activeApplications.length != 0 ? activeApplications.length : 0,
+  //     desc: "Active Applicants for jobs",
+  //   },
+  //   {
+  //     analtyticsTitle: "Talent Interviews", //notifications
+  //     stats:
+  //       interviewApplications.length != 0 ? interviewApplications.length : 0,
+  //     desc: "Active Interviews for jobs",
+  //   },
+  //   {
+  //     analtyticsTitle: "Employed Talents",
+  //     stats: uniqueTalents.length != 0 ? uniqueTalents.length : 0,
+  //     desc: `${uniqueJobs.length != 0 ? uniqueJobs.length : 0} Job Categories`,
+  //   },
+  // ];
   const companyAnalytics = [
     {
       analtyticsTitle: "Total Job Offers",
       stats: jobs.length != 0 ? jobs.length : 0,
-      desc: `${openedJobs.length} open job listings`,
+      desc: <BiSolidBadgeCheck />,
     },
     {
       analtyticsTitle: "Total Applicants",
       stats: activeApplications.length != 0 ? activeApplications.length : 0,
-      desc: "Active Applicants for jobs",
+      desc: <IoDocuments />,
     },
     {
       analtyticsTitle: "Talent Interviews", //notifications
       stats:
         interviewApplications.length != 0 ? interviewApplications.length : 0,
-      desc: "Active Interviews for jobs",
+      desc: <FaPeopleGroup />,
     },
     {
       analtyticsTitle: "Employed Talents",
       stats: uniqueTalents.length != 0 ? uniqueTalents.length : 0,
-      desc: `${uniqueJobs.length != 0 ? uniqueJobs.length : 0} Job Categories`,
+      desc: <FaPersonCircleCheck />,
     },
   ];
   return (
     <>
       <HireTalentNav />
       <DashboardLayout
-        dashInfo="This provides a summary of your application details"
+        dashInfo="Ready to hire your next talent?"
         analytics={companyAnalytics}
+        link1="/hire-talent/dashboard/add-job"
         link2="/hire-talent/dashboard/my-jobs"
-        link1="/hire-talent/dashboard/profile"
+        link3="/hire-talent/dashboard/talents"
+        cardDesc1={"Build your dream team with the best talents"}
+        cardDesc2={
+          openedJobs.length == 0
+            ? "You have no active job listing."
+            : `${openedJobs.length} open job listing${
+                openedJobs.length == 1 ? "" : "s"
+              }`
+        }
+        cardDesc3={
+          uniqueTalents.length == 0
+            ? "No hires yet but don't worry, TalentNest is here to help you."
+            : `${uniqueTalents.length} successful hire${
+                uniqueTalents.length == 1 ? "" : "s"
+              }`
+        }
+        cardTitle1="Post a job +"
+        cardTitle2="Your Nest Job Listings"
+        cardTitle3="Sucessful Hires"
         status1={user?.accountStatus ? user?.accountStatus : "Loading"}
         status2={user?.preference ? user?.preference : "Loading"}
+        user={user?.companyName ? user?.companyName : ""}
+        userId={user?._id}
+        company
       />
     </>
   );

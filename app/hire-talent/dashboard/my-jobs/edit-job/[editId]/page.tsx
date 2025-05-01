@@ -4,7 +4,7 @@ import HireTalentNav from "@/components/Dashboard/HireTalentDashboard/HireTalent
 const EditJobPage = ({ params }: { params: { editId: string } }) => {
   return (
     <>
-      <HireTalentNav activeItem={1} />
+      <HireTalentNav />
       <EditJobs />
     </>
   );

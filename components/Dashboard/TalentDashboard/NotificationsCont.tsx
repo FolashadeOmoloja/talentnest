@@ -14,6 +14,7 @@ type IsActiveState = {
   [key: number]: boolean;
 };
 type Notification = {
+  _uuid: string;
   _id: string;
   senderMessage: string;
   receiverMessage: string;
@@ -40,6 +41,8 @@ const Notifications = ({
     isCompany ? deleteCompanyNotice(id) : deleteTalentNotice(id);
   };
 
+  console.log(notifications[0]?._id);
+  console.log(notifications[0]);
   return (
     <section className="dashboard-container min-h-svh">
       <h2 className="text-2xl font-bold mb-1 bg-text">
@@ -83,7 +86,7 @@ const Notifications = ({
                     <div
                       className="text-xl text-red-700 cursor-pointer"
                       onClick={() => {
-                        deleteNotice(item._id);
+                        deleteNotice(item._uuid);
                       }}
                     >
                       <FaTrash />

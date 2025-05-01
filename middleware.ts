@@ -5,7 +5,7 @@ import { jwtVerify } from "jose";
 export async function middleware(req: NextRequest) {
   const token = req.cookies.get("token")?.value;
   const url = req.nextUrl.pathname;
- 
+
   // Check if the request is for a protected route (company, talent, or admin)
   const isCompanyRoute = url.startsWith("/hire-talent/dashboard");
   const isTalentRoute = url.startsWith("/dashboard");
@@ -72,7 +72,18 @@ export async function middleware(req: NextRequest) {
     }
   } catch (error) {
     console.error("Error verifying token:", error);
-    const response = NextResponse.redirect(new URL("/sign-in", req.url));
+    const response = NextResponse.redirect(
+      new URL(
+        isCompanyRoute
+          ? "/hire-talent"
+          : isTalentRoute
+          ? "/sign-in"
+          : isAdminRoute
+          ? "/sign-in"
+          : req.url,
+        req.url // This will create a full URL
+      )
+    );
 
     // Set 'loggedOut' cookie on error
     response.cookies.set("loggedOut", "true", { path: "/", httpOnly: false });

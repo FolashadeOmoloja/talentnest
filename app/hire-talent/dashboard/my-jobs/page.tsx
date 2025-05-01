@@ -5,7 +5,7 @@ import HireTalentProfile from "@/components/Dashboard/Profile/HireTalentProfile"
 const page = () => {
   return (
     <>
-      <HireTalentNav activeItem={1} />
+      <HireTalentNav />
       <CompanyJobTables />
     </>
   );
