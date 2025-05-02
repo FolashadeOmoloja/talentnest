@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 import { setJob } from "@/redux/slices/jobSlice";
 import { useEditJob } from "@/hooks/job-hook";
 import { FaBriefcase, FaLocationDot, FaMapPin } from "react-icons/fa6";
-import { BsCashStack } from "react-icons/bs";
+import { BsBuildingFillGear, BsCashStack } from "react-icons/bs";
 
 type Company = {
   companyName: string;
@@ -99,8 +99,14 @@ export const companyActiveColumns: Column<JobPosted>[] = [
     Cell: ({ row }: { row: { original: JobPosted } }) => {
       return (
         <div className="flex flex-col gap-4">
-          <span>{row.original.department}</span>
-          <span>{row.original.location}</span>
+          <span className="flex items-center gap-2">
+            <BsBuildingFillGear color="#010D3E" />
+            {row.original.department}
+          </span>
+          <span className="flex items-center gap-2">
+            <FaLocationDot color="#010D3E" />
+            {row.original.location}
+          </span>
         </div>
       );
     },
@@ -111,9 +117,13 @@ export const companyActiveColumns: Column<JobPosted>[] = [
     Cell: ({ row }: { row: { original: JobPosted } }) => {
       return (
         <div className="flex flex-col gap-4">
-          <span>{row.original.jobProximity}</span>
-          <span>
-            ${row.original.salaryRange1} - ${row.original.salaryRange2}
+          <span className="flex items-center gap-2">
+            <FaMapPin color="#010D3E" />
+            {row.original.jobProximity}
+          </span>
+          <span className="flex items-center gap-2">
+            <BsCashStack color="#010D3E" />${row.original.salaryRange1} - $
+            {row.original.salaryRange2}
           </span>
         </div>
       );
@@ -140,20 +150,6 @@ export const companyActiveColumns: Column<JobPosted>[] = [
       );
     },
   },
-  // {
-  //   Header: "",
-  //   accessor: "status",
-  //   Cell: ({ row }: { row: { index: number; original: JobPosted } }) => {
-  //     return (
-  //       <CTABTN
-  //         route={`/hire-talent/dashboard/my-jobs/${row.index}`}
-  //         CTA="View Applicants"
-  //         width="w-[138px]"
-  //         height2="h-[50px] text-sm"
-  //       />
-  //     );
-  //   },
-  // },
 ];
 
 export const closedJobsColumns: Column<JobPosted>[] = [
@@ -170,8 +166,14 @@ export const closedJobsColumns: Column<JobPosted>[] = [
     Cell: ({ row }: { row: { original: JobPosted } }) => {
       return (
         <div className="flex flex-col gap-4">
-          <span>{row.original.department}</span>
-          <span>{row.original.location}</span>
+          <span className="flex items-center gap-2">
+            <BsBuildingFillGear color="#010D3E" />
+            {row.original.department}
+          </span>
+          <span className="flex items-center gap-2">
+            <FaLocationDot color="#010D3E" />
+            {row.original.location}
+          </span>
         </div>
       );
     },
@@ -182,9 +184,13 @@ export const closedJobsColumns: Column<JobPosted>[] = [
     Cell: ({ row }: { row: { original: JobPosted } }) => {
       return (
         <div className="flex flex-col gap-4">
-          <span>{row.original.jobProximity}</span>
-          <span>
-            ${row.original.salaryRange1} - ${row.original.salaryRange2}
+          <span className="flex items-center gap-2">
+            <FaMapPin color="#010D3E" />
+            {row.original.jobProximity}
+          </span>
+          <span className="flex items-center gap-2">
+            <BsCashStack color="#010D3E" />${row.original.salaryRange1} - $
+            {row.original.salaryRange2}
           </span>
         </div>
       );
@@ -215,21 +221,7 @@ export const closedJobsColumns: Column<JobPosted>[] = [
           func={() => changeStatus(row.original._id, row.index, row.original)}
           CTA="Reopen Job"
           height2="h-[50px] text-sm"
-          backGround="bg-[#22CCED]"
-        />
-      );
-    },
-  },
-  {
-    Header: "",
-    accessor: "status",
-    Cell: ({ row }: { row: { index: number; original: JobPosted } }) => {
-      return (
-        <CTABTN
-          route={`/hire-talent/dashboard/my-jobs/${row.index}`}
-          CTA="View Applicants"
-          width="w-[138px]"
-          height2="h-[50px] text-sm"
+          backGround="bg-[#000000]"
         />
       );
     },
@@ -256,14 +248,14 @@ export const hiredCandidatesColumn: Column<SuccessApplications>[] = [
         <section className="flex flex-col gap-3 ">
           <div className="p-7">
             <div
-              className="h-[60px] w-[50px] rounded-full overflow-hidden "
+              className="border border-[#010D3E] rounded-full overflow-hidden "
               style={{ width: "50px", height: "50px" }}
             >
               {row.original.talent.profileImage ? (
                 <img
                   src={row.original.talent.profileImage}
                   alt=" "
-                  className="object-center"
+                  className="object-cover w-full h-full"
                 />
               ) : (
                 <section

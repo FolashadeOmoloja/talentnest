@@ -5,7 +5,6 @@ import Link from "next/link";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useState } from "react";
 import PhoneNoInput from "@/components/Elements/PhoneNoInput";
-import FormLogo from "@/components/Elements/FormLogo";
 import { getRandomColor } from "@/utilities/constants";
 import Dropdown, { DropdownSelector } from "@/components/Elements/Dropdown";
 import { industriesArr } from "@/utilities/constants/searchbarData";

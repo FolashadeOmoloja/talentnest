@@ -76,7 +76,7 @@ const Table = <T extends object>({
                   <tr
                     {...row.getRowProps()}
                     key={idx}
-                    className="border-b border-[#CCD2D9] h-[130px]"
+                    className="border-b border-gray-500 h-[130px]"
                   >
                     {row.cells.map((cell, idx) => {
                       return (

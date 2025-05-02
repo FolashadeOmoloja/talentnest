@@ -1,6 +1,4 @@
 import { useForm } from "react-hook-form";
-import StepCounter from "@/components/Elements/StepCounter";
-import FormLogo from "@/components/Elements/FormLogo";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { getRandomColor } from "@/utilities/constants";

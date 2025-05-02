@@ -171,6 +171,7 @@ const TalentProfileForm = ({
           defaultValue={user.phoneNumber}
           defaultCode={user.countryCode}
           setValue={setValue}
+          dash
         />
       </div>
       <div className="flex flex-col gap-4">

@@ -25,6 +25,7 @@ interface PhoneNoInputProps {
   validationRules: ValidationRules;
   defaultValue?: string;
   defaultCode?: string;
+  dash?: boolean;
 }
 
 const PhoneNoInput: React.FC<PhoneNoInputProps> = ({
@@ -33,6 +34,7 @@ const PhoneNoInput: React.FC<PhoneNoInputProps> = ({
   validationRules,
   defaultValue,
   defaultCode,
+  dash,
 }) => {
   const [countries, setCountries] = useState<Country[]>([]);
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
@@ -92,7 +94,9 @@ const PhoneNoInput: React.FC<PhoneNoInputProps> = ({
       <div className="basis-[20%] relative">
         <div
           onClick={toggleDropdown}
-          className="flex items-center justify-center cursor-pointer bg-white h-full py-[13px] rounded-md"
+          className={`flex items-center justify-center cursor-pointer bg-white h-full py-[13px] rounded-md ${
+            dash && "rounded-lg border border-gray-200"
+          }`}
         >
           <img
             src={selectedCountry.flag}
@@ -102,7 +106,11 @@ const PhoneNoInput: React.FC<PhoneNoInputProps> = ({
           <MdKeyboardArrowDown className="text-[#98A2B3] max-sm:hidden" />
         </div>
         {isOpen && (
-          <div className="absolute z-10 mt-2 bg-white border rounded shadow-lg h-[200px] overflow-y-auto custom-scrollbar w-[300px]">
+          <div
+            className={`absolute z-10 mt-2 bg-white border rounded shadow-lg h-[200px] overflow-y-auto custom-scrollbar w-[300px] ${
+              dash && "rounded-lg border border-gray-200"
+            }`}
+          >
             {countries.map((country, idx) => (
               <div
                 key={idx}

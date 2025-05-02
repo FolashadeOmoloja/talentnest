@@ -3,8 +3,10 @@ import Dropdown from "@/components/Elements/Dropdown";
 import { useAddJob } from "@/hooks/job-hook";
 import { validationRules } from "@/utilities/constants";
 import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { FieldError, useForm } from "react-hook-form";
+import { FaArrowLeft } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 
 const AddJobs = () => {
@@ -77,9 +79,17 @@ const AddJobs = () => {
   useEffect(() => {
     setMounted(true);
   }, []);
+  const router = useRouter();
   return (
     <section className="dashboard-container min-h-svh">
-      <h2 className="text-2xl font-bold mb-1">
+      <div
+        onClick={() => router.push("/hire-talent/dashboard")}
+        className="flex text-black gap-3  items-center font-bold mb-7 cursor-pointer"
+      >
+        <FaArrowLeft />
+        <span>Go back</span>
+      </div>
+      <h2 className="text-2xl font-bold mb-1 bg-text">
         Welcome, {user?.companyName && mounted ? user?.companyName : ""}! Ready
         to Create a New Job Listing?
       </h2>
@@ -89,16 +99,9 @@ const AddJobs = () => {
       <section className="flex justify-center w-full">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="bg-white rounded-sm md:w-[70%] py-8 md:px-16 sm:px-6 px-4 mt-16 max-sm:mt-10 max-sm:py-6"
+          className="bg-white rounded-2xl shadow-md md:w-[70%] py-8 md:px-16 sm:px-6 px-4 mt-16 max-sm:mt-10 max-sm:py-6"
         >
-          <div className="flex   md:text-lg font-bold mt-16  justify-center">
-            <span
-              className={`tab active max-sm:h-[50px] text-xl w-full xsm:w-[200px]`}
-            >
-              Job Details
-            </span>
-          </div>
-          <p className="text-gray-500 text-lg mt-9">
+          <p className="text-[#010D3E] text-xl font-medium mt-9">
             Fill the form below to add a job post
           </p>
           <section className="mt-8">
@@ -279,7 +282,7 @@ const AddJobs = () => {
                 <button
                   type="button"
                   onClick={() => addSkill(newSkill)}
-                  className="py-2 px-4 bg-[#010D3E] text-white rounded-md"
+                  className="py-2 px-4 bg-[#000000] text-white rounded-md"
                 >
                   Add
                 </button>
@@ -319,7 +322,7 @@ const AddJobs = () => {
             </div>
             <button
               type="submit"
-              className="w-full h-12 bg-[#010D3E] text-white shadow-sm rounded-lg btn-hover mt-20"
+              className="w-full h-12 bg-[#000000] text-white shadow-sm rounded-lg btn-hover mt-20"
               disabled={isSubmitting}
             >
               {loading ? (

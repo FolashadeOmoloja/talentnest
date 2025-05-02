@@ -203,6 +203,7 @@ const CompanyProfileForm = ({
           defaultValue={user.phoneNumber}
           defaultCode={user.countryCode}
           setValue={setValue}
+          dash
         />
       </div>
       <br className="mb-4" />
@@ -226,12 +227,12 @@ const CompanyProfileForm = ({
 
       <div className="mt-16 flex gap-10 max-xsm:gap-5">
         <div
-          className="login-btn centered gap-3 cursor-pointer icon-animate"
+          className="login-btn centered cursor-pointer"
           onClick={() => changeState(0)}
         >
           Cancel
         </div>
-        <button type="submit" className="login-btn" disabled={isSubmitting}>
+        <button type="submit" className="form-btn" disabled={isSubmitting}>
           {loading ? (
             <div className="flex items-center justify-center">
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />

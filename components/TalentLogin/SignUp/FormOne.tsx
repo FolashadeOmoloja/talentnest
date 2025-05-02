@@ -3,8 +3,6 @@ import Link from "next/link";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useState } from "react";
 import PhoneNoInput from "@/components/Elements/PhoneNoInput";
-import StepCounter from "@/components/Elements/StepCounter";
-import FormLogo from "@/components/Elements/FormLogo";
 import { companyValidationRules as validationRules } from "@/utilities/constants/formValidation";
 import { setStep1Data } from "@/redux/slices/talentRegistrationSlice";
 import { useDispatch, useSelector } from "react-redux";

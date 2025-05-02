@@ -1,8 +1,6 @@
 import { FieldError, useForm } from "react-hook-form";
-import StepCounter from "@/components/Elements/StepCounter";
 import Dropdown from "@/components/Elements/Dropdown";
 import { FaArrowLeft } from "react-icons/fa6";
-import FormLogo from "@/components/Elements/FormLogo";
 import { useDispatch, useSelector } from "react-redux";
 import { setStep2Data } from "@/redux/slices/talentRegistrationSlice";
 import { companyValidationRules as validationRules } from "@/utilities/constants/formValidation";

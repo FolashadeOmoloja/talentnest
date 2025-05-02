@@ -107,30 +107,23 @@ const EditJobs = ({ openJobPage }: { openJobPage?: boolean }) => {
     <section className="dashboard-container min-h-svh">
       {!openJobPage ? (
         <div
-          onClick={() => router.push("/hire-talent/dashboard/my-jobs")}
-          className="flex text-[#010D3E] gap-3 text-xl items-center font-bold mb-4 cursor-pointer"
+          onClick={() => router.push("/hire-talent/dashboard")}
+          className="flex text-black gap-3  items-center font-bold mb-7 cursor-pointer"
         >
           <FaArrowLeft />
           <span>Go back</span>
         </div>
       ) : null}
-      <h2 className="text-2xl font-bold mb-1">
+      <h2 className="text-2xl font-bold mb-1 bg-text">
         Ready to Update Your Job Listing?
       </h2>
       <span className="text-[#7C8698]">Efficiently manage your job posts.</span>
       <section className="flex justify-center w-full">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="bg-white rounded-sm md:w-[70%] py-8 md:px-16 sm:px-6 px-4 mt-16 max-sm:mt-10 max-sm:py-6"
+          className="bg-white rounded-2xl shadow-md md:w-[70%] py-8 md:px-16 sm:px-6 px-4 mt-16 max-sm:mt-10 max-sm:py-6"
         >
-          <div className="flex   md:text-lg font-bold mt-16  justify-center">
-            <span
-              className={`tab active max-sm:h-[50px] text-xl w-full xsm:w-[200px]`}
-            >
-              Job Details
-            </span>
-          </div>
-          <p className="text-gray-500 text-lg mt-9">
+          <p className="text-[#010D3E] text-xl mt-9">
             Make changes to the form below to update your existing job post.
           </p>
           <section className="mt-8">
@@ -362,7 +355,7 @@ const EditJobs = ({ openJobPage }: { openJobPage?: boolean }) => {
               <div className="mt-20 flex gap-10 max-xsm:gap-5">
                 <button
                   type="submit"
-                  className="w-full h-12 bg-[#010D3E] text-white shadow-sm rounded-lg btn-hover "
+                  className="w-full h-12 bg-black text-white shadow-sm rounded-lg btn-hover "
                   disabled={isSubmitting}
                 >
                   {loading ? (
@@ -392,7 +385,7 @@ const EditJobs = ({ openJobPage }: { openJobPage?: boolean }) => {
               <div className="mt-20">
                 <button
                   type="submit"
-                  className="w-full h-12 bg-[#010D3E] text-white shadow-sm rounded-lg btn-hover "
+                  className="w-full h-12 bg-black text-white shadow-sm rounded-lg btn-hover "
                   disabled={isSubmitting}
                 >
                   {loading ? (

@@ -2,13 +2,9 @@
 
 import { useEffect, useState } from "react";
 import JobTable from "../TalentDashboard/JobTable";
-import {
-  companyActiveColumns,
-  hiredCandidatesColumn,
-  closedJobsColumns,
-} from "@/utilities/tableData";
-import { JobPosted, SuccessApplications } from "@/utilities/constants/typeDef";
-import { useGetAllCompanyEmployed, useGetCompanyJobs } from "@/hooks/job-hook";
+import { companyActiveColumns, closedJobsColumns } from "@/utilities/tableData";
+import { JobPosted } from "@/utilities/constants/typeDef";
+import { useGetCompanyJobs } from "@/hooks/job-hook";
 import { Loader2 } from "lucide-react";
 import { useSelector } from "react-redux";
 import { handleSendNotification } from "@/hooks/notification-hook";
@@ -18,9 +14,8 @@ type IsActiveState = {
 };
 
 const CompanyJobTables = () => {
-  const filterArr = ["Active Jobs", "Closed Jobs", "Hired Talents"];
+  const filterArr = ["Active Jobs", "Closed Jobs"];
   const { jobs, loading } = useGetCompanyJobs();
-  const { successApplications } = useGetAllCompanyEmployed();
   const [active, setActive] = useState<IsActiveState>({ 0: true });
   const [changeTable, setChangeTable] = useState(0);
   const { user } = useSelector((store: any) => store.auth);
@@ -38,7 +33,6 @@ const CompanyJobTables = () => {
   // Recalculate the jobs when `jobs` or `changeTable` changes
   const openedJobs = changeTable === 0 ? filterJobs("open") : [];
   const closedJobs = changeTable === 1 ? filterJobs("closed") : [];
-  const hiredCandidates = changeTable === 2 ? successApplications : [];
 
   const activeFunc = (idx: number) => {
     const newState: IsActiveState = {};
@@ -66,14 +60,14 @@ const CompanyJobTables = () => {
 
   return (
     <section className="dashboard-container min-h-svh">
-      <h2 className="text-2xl font-bold mb-1">
-        {mounted && user?.companyName ? `${user.companyName}` : "You can"}, see
-        how your recruitment is going
+      <h2 className="text-2xl font-bold mb-1 bg-text">
+        {mounted && user?.companyName ? `${user.companyName}` : "You can"},
+        Track Your Recruitment Progress
       </h2>
-      <span className="text-[#7C8698]">
-        This is your complete job list overview
+      <span className="text-gray-500">
+        Here's a full overview of your active and inactive job listings.
       </span>
-      <div className="flex w-full text-[#626263] md:text-lg font-bold mt-16 border-b border-[#CCD2D9]">
+      <div className="flex w-full text-gray-500 md:text-lg font-bold mt-16 border-b border-gray-500">
         {filterArr.map((item, idx) => (
           <span
             className={`tab ${active[idx] ? "active" : ""} max-sm:h-[50px]`}
@@ -108,21 +102,10 @@ const CompanyJobTables = () => {
         ) : (
           <JobTable<JobPosted> data={closedJobs} columns={closedJobsColumns} />
         )
-      ) : changeTable === 2 ? (
-        hiredCandidates.length === 0 ? (
-          <p className="mt-10 text-[#000040] italic text-2xl">
-            No data available at the moment.
-          </p>
-        ) : (
-          <JobTable<SuccessApplications>
-            data={hiredCandidates}
-            columns={hiredCandidatesColumn}
-          />
-        )
       ) : null}
       <button
         onClick={onSubmit}
-        className="py-4 px-6 max-w-[300px] mt-10 bg-[#010D3E] text-white rounded-md font-semibold btn-hover"
+        className="py-4 px-6 max-w-[350px] mt-10 bg-[#010D3E] text-white rounded-md font-semibold btn-hover max-md:text-sm max-sm:px-4 max-sm:font-medium"
       >
         {noticeLoading ? (
           <div className="flex items-center justify-center">

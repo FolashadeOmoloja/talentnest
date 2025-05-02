@@ -64,7 +64,7 @@ const MyJobTables = () => {
         with your applications
       </h2>
       <span className="text-[#7C8698]">Your applications overview</span>
-      <div className="flex w-full text-[#626263] md:text-lg font-bold mt-16 border-b border-[#CCD2D9]">
+      <div className="flex w-full text-[#626263] md:text-lg font-bold mt-16 border-b border-gray-500">
         {filterArr.map((item, idx) => (
           <span
             className={`tab ${active[idx] ? "active" : ""} max-sm:h-[50px]`}

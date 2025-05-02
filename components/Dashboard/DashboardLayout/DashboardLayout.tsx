@@ -98,7 +98,13 @@ const DashboardLayout = ({
                 )}
 
                 <button
-                  onClick={() => router.push("/dashboard/profile")}
+                  onClick={() =>
+                    router.push(
+                      company
+                        ? "/hire-talent/dashboard/profile"
+                        : "/dashboard/profile"
+                    )
+                  }
                   className="w-full mt-4 form-btn bg-[#EAEEFE] font-semibold text-black hover:bg-white"
                 >
                   Edit Profile

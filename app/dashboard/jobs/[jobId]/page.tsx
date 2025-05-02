@@ -121,7 +121,7 @@ const DashboardJoblisting = ({ params }: { params: { jobId: string } }) => {
                 route={""}
                 isFunc
                 func={() => applyHandler(jobDataId)}
-                CTA={applyLoading ? "Applying.." : "Apply"}
+                CTA={applyLoading ? "Applying.." : "Easy Apply"}
                 showIcon
               />
             </div>
