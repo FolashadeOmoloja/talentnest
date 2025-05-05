@@ -84,7 +84,7 @@ const AddJobs = () => {
     <section className="dashboard-container min-h-svh">
       <div
         onClick={() => router.push("/hire-talent/dashboard")}
-        className="flex text-black gap-3  items-center font-bold mb-7 cursor-pointer"
+        className="flex text-[#010D3E] gap-3  items-center font-bold mb-7 cursor-pointer"
       >
         <FaArrowLeft />
         <span>Go back</span>
