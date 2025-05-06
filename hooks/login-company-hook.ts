@@ -29,20 +29,18 @@ export const useLoginCompany = () => {
         }
       );
 
-      const { success, message, company, token } = response.data;
+      const { success, message, company, hashedRole } = response.data;
       if (success) {
-        // Store the 'Set-Cookie' header manually if necessary
-        const setCookieHeader = response.headers["set-cookie"];
-        if (setCookieHeader) {
-          Cookies.set("token", setCookieHeader[0]);
-        }
+        Cookies.set("accessToken", hashedRole, {
+          expiresIn: "1d",
+          secure: true,
+          sameSite: "None",
+        });
 
         // Set the user data in Redux
         dispatch(setUser(company));
-        +(
-          // Redirect to the dashboard with `refresh=true` in query params
-          router.push("/hire-talent/dashboard?refresh=true")
-        );
+        // Redirect to the dashboard with `refresh=true` in query params
+        router.push("/hire-talent/dashboard?refresh=true");
 
         toast.success(message);
       } else {
@@ -87,13 +85,13 @@ export const useLoginUser = () => {
         }
       );
 
-      const { success, message, talent } = response.data;
+      const { success, message, talent, hashedRole } = response.data;
       if (success) {
-        // Store the 'Set-Cookie' header manually if necessary
-        const setCookieHeader = response.headers["set-cookie"];
-        if (setCookieHeader) {
-          Cookies.set("token", setCookieHeader[0]);
-        }
+        Cookies.set("accessToken", hashedRole, {
+          expiresIn: "1d",
+          secure: true,
+          sameSite: "None",
+        });
 
         // Set the user data in Redux
         dispatch(setUser(talent));
