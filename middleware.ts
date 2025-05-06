@@ -4,6 +4,8 @@ import { jwtVerify } from "jose";
 
 export async function middleware(req: NextRequest) {
   const token = req.cookies.get("token")?.value;
+  console.log("Middleware cookies:", req.cookies);
+  console.log("token", token);
   const url = req.nextUrl.pathname;
 
   // Check if the request is for a protected route (company, talent, or admin)
