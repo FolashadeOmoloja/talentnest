@@ -14,15 +14,9 @@ const MainContent = () => {
         </div>
         <Form />
       </section>
-      <Testimonials color="text-white" textCenter={false} top="top-0" />
+
       <section className=" relative slg:top-14 mb-[150px] max-slg:mb-[50px] ">
-        <CTA
-          color="text-white"
-          btnBg="bg-white"
-          btnColor="text-[#010D3E]"
-          bg="bg-contact-bg"
-          top="top-0"
-        />
+        <CTA />
       </section>
     </main>
   );
