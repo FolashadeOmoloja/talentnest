@@ -1,36 +1,23 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { jwtVerify } from "jose";
+import CryptoJS from "crypto-js";
 
 export async function middleware(req: NextRequest) {
-  const token = req.cookies.get("token")?.value;
-  console.log("Middleware cookies:", req.cookies);
-  console.log("token", token);
+  const hashedRoleFromCookie = req.cookies.get("accessToken")?.value;
   const url = req.nextUrl.pathname;
 
-  // Check if the request is for a protected route (company, talent, or admin)
+  // Check if the request is for a protected route (company, talent)
   const isCompanyRoute = url.startsWith("/hire-talent/dashboard");
   const isTalentRoute = url.startsWith("/dashboard");
-  const isAdminRoute = url.startsWith("/admin/dashboard");
 
   // If the route is not protected, let the request proceed
-  if (!isCompanyRoute && !isTalentRoute && !isAdminRoute) {
+  if (!isCompanyRoute && !isTalentRoute) {
     return NextResponse.next();
   }
 
-  // If no token is found, set the loggedOut cookie and redirect to login pages
-  if (!token) {
+  if (!hashedRoleFromCookie) {
     const response = NextResponse.redirect(
-      new URL(
-        isCompanyRoute
-          ? "/hire-talent"
-          : isTalentRoute
-          ? "/sign-in"
-          : isAdminRoute
-          ? "/sign-in"
-          : req.url,
-        req.url // This will create a full URL
-      )
+      new URL(isCompanyRoute ? "/hire-talent" : "/sign-in", req.url)
     );
 
     // Set the 'loggedOut' cookie for identifying logged out users
@@ -39,57 +26,27 @@ export async function middleware(req: NextRequest) {
     return response;
   }
 
-  try {
-    let secretKey;
+  // Define expected role based on the route
+  let expectedRole;
+  if (isCompanyRoute) {
+    expectedRole = "company";
+  } else if (isTalentRoute) {
+    expectedRole = "talent";
+  }
 
-    // Assign the correct secret key based on the route
-    if (isCompanyRoute) {
-      secretKey = new TextEncoder().encode(process.env.COMPANY_SECRET_KEY);
-    } else if (isTalentRoute) {
-      secretKey = new TextEncoder().encode(process.env.TALENT_SECRET_KEY);
-    } else if (isAdminRoute) {
-      secretKey = new TextEncoder().encode(process.env.ADMIN_SECRET_KEY);
-    }
+  // If no expected role, proceed to the next response
+  if (!expectedRole) {
+    return NextResponse.next();
+  }
 
-    if (!secretKey) {
-      throw new Error("Secret key not found for the requested route.");
-    }
+  // Hash the expected role using CryptoJS
+  const hashedExpectedRole = CryptoJS.SHA256(expectedRole).toString();
 
-    // Verify the token using the appropriate secret key
-    const { payload } = await jwtVerify(token, secretKey);
-
-    // Extract the user role from the token payload
-    //@ts-ignore
-    const userRole: string = payload.role; // Assuming 'role' is present in the token
-
-    // Dynamic route protection based on user role
-    if (
-      (isCompanyRoute && userRole === "company") ||
-      (isTalentRoute && userRole === "talent") ||
-      (isAdminRoute && userRole === "admin")
-    ) {
-      return NextResponse.next(); // Allow access based on role
-    } else {
-      return NextResponse.redirect(new URL("/auth/unauthorized", req.url));
-    }
-  } catch (error) {
-    console.error("Error verifying token:", error);
-    const response = NextResponse.redirect(
-      new URL(
-        isCompanyRoute
-          ? "/hire-talent"
-          : isTalentRoute
-          ? "/sign-in"
-          : isAdminRoute
-          ? "/sign-in"
-          : req.url,
-        req.url // This will create a full URL
-      )
-    );
-
-    // Set 'loggedOut' cookie on error
-    response.cookies.set("loggedOut", "true", { path: "/", httpOnly: false });
-    return response;
+  // Verify the hashed role
+  if (hashedRoleFromCookie === hashedExpectedRole) {
+    return NextResponse.next(); // Allow access based on hashed role
+  } else {
+    return NextResponse.redirect(new URL("/auth/unauthorized", req.url));
   }
 }
 
