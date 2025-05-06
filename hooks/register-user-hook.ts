@@ -26,13 +26,14 @@ const useRegisterTalent = () => {
         }
       );
 
-      const { success, message, talent, token } = response.data;
+      const { success, message, talent, hashedRole } = response.data;
 
       if (success) {
-        const setCookieHeader = response.headers["set-cookie"];
-        if (setCookieHeader) {
-          Cookies.set("token", setCookieHeader[0]);
-        }
+        Cookies.set("accessToken", hashedRole, {
+          expiresIn: "1d",
+          secure: true,
+          sameSite: "None",
+        });
 
         dispatch(setUser(talent));
         router.push("/dashboard?refresh=true");

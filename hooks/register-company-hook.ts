@@ -26,14 +26,14 @@ const useRegisterCompany = () => {
         }
       );
 
-      const { success, message, company, token } = response.data;
+      const { success, message, company, hashedRole } = response.data;
 
       if (success) {
-        // Handle 'Set-Cookie' header if necessary
-        const setCookieHeader = response.headers["set-cookie"];
-        if (setCookieHeader) {
-          Cookies.set("token", setCookieHeader[0]);
-        }
+        Cookies.set("accessToken", hashedRole, {
+          expiresIn: "1d",
+          secure: true,
+          sameSite: "None",
+        });
 
         // Set user in Redux
         dispatch(setUser(company));
