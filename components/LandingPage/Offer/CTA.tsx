@@ -4,14 +4,18 @@ const CTA = ({
   route = "/sign-in",
   cta = "Get Started",
   showTwoCta = false,
+  addPadding = false,
 }: {
   route?: string;
   cta?: string;
   showTwoCta?: boolean;
+  addPadding?: boolean;
 }) => {
   return (
     <section
-      className={`section-container flex flex-col items-center text-center bg-gradient-to-b from-white  to-[#d2dcff] pb-[50px] md:pb-[100px]`}
+      className={`section-container ${
+        addPadding && "pt-[50px] pb-[130px]"
+      } flex flex-col items-center text-center bg-gradient-to-b from-white  to-[#d2dcff] pb-[50px] md:pb-[100px]`}
     >
       <h3
         className={`font-bold text-[48px] max-w-[540px] bg-text leading-tight max-md:text-[24px] mb-5`}
