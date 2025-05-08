@@ -106,7 +106,7 @@ const FormTwo = ({
           selctedItem2={step2Data.skills}
         />
         <Dropdown
-          ItemsArr={["Intermediate", "Senior", "C-level"]}
+          ItemsArr={["Junior/Entry", "Intermediate", "Senior level", "C-level"]}
           label="Current experience level"
           placeholder="Select your experience level"
           name={"level"}

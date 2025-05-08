@@ -177,7 +177,12 @@ const TalentProfileForm = ({
       <div className="flex flex-col gap-4">
         <div className="flex max-sslg:flex-col gap-[20px] ">
           <Dropdown
-            ItemsArr={["Senior", "Intermediate", "C-level"]}
+            ItemsArr={[
+              "Junior/Entry",
+              "Intermediate",
+              "Senior level",
+              "C-level",
+            ]}
             label="Experience Level"
             placeholder={user.experienceLevel}
             name={"experienceLevel"}

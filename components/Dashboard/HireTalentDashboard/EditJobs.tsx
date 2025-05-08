@@ -251,7 +251,12 @@ const EditJobs = ({ openJobPage }: { openJobPage?: boolean }) => {
             </div>
             <div className="flex formdivs max-slg:flex-col mb-[20px] gap-[20px]">
               <Dropdown
-                ItemsArr={["Intermediate", "Senior level", "C-level"]}
+                ItemsArr={[
+                  "Junior/Entry",
+                  "Intermediate",
+                  "Senior level",
+                  "C-level",
+                ]}
                 label="Experience Level"
                 placeholder="Select an option"
                 name={"experienceLevel"}
