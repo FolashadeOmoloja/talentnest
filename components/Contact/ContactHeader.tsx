@@ -8,7 +8,7 @@ const ContactHeader = () => {
     <CustomHeader>
       <div className="flex flex-col items-center justify-center  relative">
         <HeaderTitle
-          title="Your NestHub Guide, Talent meets opportunity"
+          title="Your Nest HelpDesk, Talent meets opportunity"
           className="max-w-[800px]"
         />
       </div>
