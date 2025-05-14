@@ -175,7 +175,7 @@ const FormOne = ({
           </label>
           <input
             type="text"
-            defaultValue={step1Data.email}
+            defaultValue={step1Data.profession}
             placeholder="Enter your professional role"
             {...register("profession", {
               required: validationRules.profession.required,
