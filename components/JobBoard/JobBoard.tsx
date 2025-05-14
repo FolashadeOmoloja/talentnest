@@ -61,7 +61,7 @@ const JobBoard = ({
   const [newJobPosting, setNewJobPosting] = useState<FilteredJobs>(jobPostings);
   const [isChecked, setIsChecked] = useState<IsCheckedState>({});
   const [showFilter, setShowFilter] = useState(false);
-
+useEffect(()=> setFilteredJobs(jobPostings),[jobPostings])
   return (
     <section className={`  mt-0 `}>
       <CustomHeader>
