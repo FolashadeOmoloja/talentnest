@@ -4,44 +4,28 @@ import {
   proximityFilter,
   experienceFilter,
 } from "@/utilities/constants/searchbarData";
-
-type Job = {
-  title: string;
-  company: string;
-  location: string;
-  priceRange: string;
-  jobProximity: string;
-  jobHours: string;
-  experience: string;
-  skills: string[];
-  role: string;
-  department: string;
-  country: string;
-};
-
-type IsCheckedState = {
-  [key: number]: boolean;
-};
+import {
+  Jobs,
+  IsCheckedState,
+  SetState,
+  SelectedFilters,
+} from "@/utilities/constants/typeDef";
 
 type FilterProps = {
-  jobPostings: Job[];
-  onFilter: (filteredJobs: Job[]) => void;
-  changeIsCheck: React.Dispatch<React.SetStateAction<IsCheckedState>>;
+  selectedFilters: SelectedFilters;
+  setSelectedFilters: SetState<SelectedFilters>;
+  changeIsCheck: SetState<IsCheckedState>;
   isChecked: IsCheckedState;
 };
 
 const Filter = ({
-  jobPostings,
-  onFilter,
+  selectedFilters,
+  setSelectedFilters,
   changeIsCheck,
   isChecked,
 }: FilterProps) => {
-  const [selectedHours, setSelectedHours] = useState<string[]>([]);
-  const [selectedProximity, setSelectedProximity] = useState<string[]>([]);
-  const [selectedExperience, setSelectedExperience] = useState<string[]>([]);
-
   const handleCheckboxChange = (
-    filterType: string,
+    filterType: keyof SelectedFilters, // ensure this is strongly typed
     value: string,
     idx: number
   ) => {
@@ -50,49 +34,34 @@ const Filter = ({
       [idx]: !prevState[idx],
     }));
 
-    const updateState = (
-      currentState: string[],
-      setState: React.Dispatch<React.SetStateAction<string[]>>
-    ) => {
-      if (currentState.includes(value)) {
-        setState(currentState.filter((item) => item !== value));
-      } else {
-        setState([...currentState, value]);
-      }
-    };
-
-    if (filterType === "hours") {
-      updateState(selectedHours, setSelectedHours);
-    } else if (filterType === "proximity") {
-      updateState(selectedProximity, setSelectedProximity);
-    } else if (filterType === "experience") {
-      updateState(selectedExperience, setSelectedExperience);
-    }
+    setSelectedFilters((prev) => {
+      const current = prev[filterType];
+      return {
+        ...prev,
+        [filterType]: current.includes(value)
+          ? current.filter((v) => v !== value)
+          : [...current, value],
+      };
+    });
   };
 
-  useEffect(() => {
-    const filteredJobs = jobPostings.filter((job) => {
-      const hoursMatch = selectedHours.length
-        ? selectedHours.includes(job.jobHours)
-        : true;
-      const proximityMatch = selectedProximity.length
-        ? selectedProximity.includes(job.jobProximity)
-        : true;
-      const experienceMatch = selectedExperience.length
-        ? selectedExperience.includes(job.experience)
-        : true;
+  // useEffect(() => {
+  //   const newFilteredJobs = jobPosting.filter((job) => {
+  //     const hoursMatch = selectedHours.length
+  //       ? selectedHours.includes(job.jobHours)
+  //       : true;
+  //     const proximityMatch = selectedProximity.length
+  //       ? selectedProximity.includes(job.jobProximity)
+  //       : true;
+  //     const experienceMatch = selectedExperience.length
+  //       ? selectedExperience.includes(job.experience)
+  //       : true;
 
-      return hoursMatch && proximityMatch && experienceMatch;
-    });
+  //     return hoursMatch && proximityMatch && experienceMatch;
+  //   });
 
-    onFilter(filteredJobs);
-  }, [
-    selectedHours,
-    selectedProximity,
-    selectedExperience,
-    jobPostings,
-    onFilter,
-  ]);
+  //   setFilteredJobs(newFilteredJobs);
+  // }, [selectedHours, selectedProximity, selectedExperience]);
 
   return (
     <section>

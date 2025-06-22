@@ -1,57 +1,39 @@
 import { useEffect, useState } from "react";
+import { useGetAllFilters } from "@/hooks/content-hook";
+import { BsCaretRightFill, BsFillBuildingsFill } from "react-icons/bs";
+import { FaMapPin, FaToolbox } from "react-icons/fa6";
+import {
+  DataItem,
+  Jobs,
+  IsCheckedState,
+  IsOpenState,
+  SetState,
+  SelectedFilters,
+  SelectedSearchFilters,
+} from "@/utilities/constants/typeDef";
 import {
   hoursFilter,
   proximityFilter,
   experienceFilter,
 } from "@/utilities/constants/searchbarData";
-import { useGetAllFilters } from "@/hooks/content-hook";
-import { BsCaretRightFill, BsFillBuildingsFill } from "react-icons/bs";
-import { FaMapPin, FaToolbox } from "react-icons/fa6";
-
-type IsOpenState = {
-  [key: number]: boolean;
-};
-type filteredJobs = {
-  title: string;
-  company: string;
-  location: string;
-  priceRange: string;
-  jobProximity: string;
-  jobHours: string;
-  experience: string;
-  skills: string[];
-  role: string;
-  department: string;
-  country: string;
-}[];
-
-type IsCheckedState = {
-  [key: number]: boolean;
-};
-
-type DataItem = {
-  label: string;
-  options: string[];
-  icon: React.ReactNode;
-};
 
 const JobSearchBar = ({
-  onSearch,
-  jobPosting,
-  onNewSearch,
+  setFilteredJobs,
+  setSearchFilters,
+  setSelectedFilters,
   changeIsCheck,
+  jobPostings,
   dropdownBg = "",
 }: {
-  onSearch: React.Dispatch<React.SetStateAction<filteredJobs>>;
-  onNewSearch: React.Dispatch<React.SetStateAction<filteredJobs>>;
-  changeIsCheck: React.Dispatch<React.SetStateAction<IsCheckedState>>;
-  jobPosting: filteredJobs;
+  setSelectedFilters: SetState<SelectedFilters>;
+  setSearchFilters: SetState<SelectedSearchFilters>;
+  setFilteredJobs: SetState<Jobs[]>;
+  changeIsCheck: SetState<IsCheckedState>;
+  jobPostings: Jobs[];
   dropdownBg?: string;
+  filteredJobs: Jobs[];
 }) => {
   const [isOpen, setIsOpen] = useState<IsOpenState>({});
-  const [role, setRole] = useState("");
-  const [location, setLocation] = useState("");
-  const [skills, setSkills] = useState("");
 
   const { filter } = useGetAllFilters();
   const searchBarData: DataItem[] = [
@@ -80,33 +62,32 @@ const JobSearchBar = ({
     });
   };
 
-  const search = () => {
-    const newFilteredJobArr = jobPosting.filter((job) => {
-      return (
-        job.department.toLowerCase().includes(role.toLowerCase()) &&
-        job.country.toLowerCase().includes(location.toLowerCase()) &&
-        job.skills.some((skill) =>
-          skill.toLowerCase().includes(skills.toLowerCase())
-        )
-      );
-    });
-    onSearch(newFilteredJobArr);
-    onNewSearch(newFilteredJobArr);
-  };
+  // const search = () => {
+  //   const newFilteredJobArr = filteredJobs.filter((job) => {
+  //     const industryMatch = industry
+  //       ? job.department.toLowerCase().includes(industry.toLowerCase())
+  //       : true;
+  //     const countryMatch = country
+  //       ? job.country.toLowerCase().includes(country.toLowerCase())
+  //       : true;
+  //     const skillMatch = skills
+  //       ? job.skills.map((s) => s.toLowerCase()).includes(skills.toLowerCase())
+  //       : true;
+  //     return industryMatch && countryMatch && skillMatch;
+  //   });
+  //   setFilteredJobs(newFilteredJobArr);
+  // };
 
-  useEffect(() => {
-    search();
-  }, [role, location, skills]);
+  // useEffect(() => {
+  //   search();
+  // }, [industry, country, skills]);
 
   const handleSelect = (index: number, option: string) => {
-    if (index == 0) {
-      setSkills(option);
-    } else if (index == 1) {
-      setRole(option);
-    }
-    if (index == 2) {
-      setLocation(option);
-    }
+    const filterKeys = ["skills", "country", "industry"];
+    setSearchFilters((prev) => ({
+      ...prev,
+      [filterKeys[index]]: option,
+    }));
 
     const newSelectedItems = [...selectedItems];
     newSelectedItems[index] = option;
@@ -118,19 +99,28 @@ const JobSearchBar = ({
   };
 
   const reset = () => {
+    // 1. Clear all selected filters (checkboxes)
+    setSelectedFilters({ hours: [], proximity: [], experience: [] });
+
+    // 2. Clear dropdown filters
+    setSearchFilters({ industry: "", country: "", skills: "" });
+
+    // 3. Clear the dropdown selected labels
     setSelectedItems(searchBarData.map(() => ""));
-    onSearch(jobPosting);
-    onNewSearch(jobPosting);
+
+    // 4. Clear checkbox UI state
     changeIsCheck(() => {
       const resetState: IsCheckedState = {};
-      hoursFilter
-        .concat(proximityFilter)
-        .concat(experienceFilter)
-        .forEach((filter) => {
+      [...hoursFilter, ...proximityFilter, ...experienceFilter].forEach(
+        (filter) => {
           resetState[filter.idx] = false;
-        });
+        }
+      );
       return resetState;
     });
+
+    // 5. Reset job list
+    setFilteredJobs(jobPostings);
   };
 
   return (

@@ -1,19 +1,8 @@
 import { FaBriefcase, FaLocationDot, FaStar } from "react-icons/fa6";
 import CTABTN from "../Elements/CTA/CTA-Button";
 import { GiProgression } from "react-icons/gi";
+import { Jobs } from "@/utilities/constants/typeDef";
 
-type filteredJobs = {
-  title: string;
-  company: string;
-  location: string;
-  priceRange: string;
-  jobProximity: string;
-  jobHours: string;
-  experience: string;
-  skills: string[];
-  role: string;
-  country: string;
-}[];
 const JobPosting = ({
   filteredJobs,
   jobPostings,
@@ -23,8 +12,8 @@ const JobPosting = ({
   ctaBg = "bg-white",
   ctaColor = "text-[#010D3E]",
 }: {
-  filteredJobs: filteredJobs;
-  jobPostings: filteredJobs;
+  filteredJobs: Jobs[];
+  jobPostings: Jobs[];
   mainRoute?: string;
   background?: string;
   option?: string;
@@ -66,8 +55,6 @@ const JobPosting = ({
                 <GiProgression />
                 <span className="mt-1">{item.experience}</span>
               </p>
-
-              {/* <span>{item.priceRange}</span> */}
             </div>
             <div className="flex gap-4 flex-wrap">
               {item.skills.map((opt, idx) => (

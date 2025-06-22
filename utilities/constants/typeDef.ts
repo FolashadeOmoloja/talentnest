@@ -56,10 +56,26 @@ export interface JobPosted {
   status: string;
   country: string;
   role: string;
+  skills: string[];
   company: userCompanyObject;
   applicants?: userObject[];
   description: string;
 }
+
+export interface Jobs {
+  title: string;
+  company: string;
+  location: string;
+  priceRange: string;
+  jobProximity: string;
+  jobHours: string;
+  experience: string;
+  skills: string[];
+  role: string;
+  department: string;
+  country: string;
+}
+[];
 
 export interface SuccessApplications {
   _id: string;
@@ -68,3 +84,30 @@ export interface SuccessApplications {
   createdAt: string;
   talent: userObject;
 }
+
+export type IsOpenState = {
+  [key: number]: boolean;
+};
+
+export type IsCheckedState = {
+  [key: number]: boolean;
+};
+
+export type DataItem = {
+  label: string;
+  options: string[];
+  icon: React.ReactNode;
+};
+
+export type SelectedFilters = {
+  hours: string[];
+  proximity: string[];
+  experience: string[];
+};
+
+export type SelectedSearchFilters = {
+  industry: string;
+  country: string;
+  skills: string;
+};
+export type SetState<T> = React.Dispatch<React.SetStateAction<T>>;

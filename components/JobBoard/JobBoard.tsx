@@ -12,26 +12,13 @@ import CustomHeader, {
   ParagraphText,
 } from "../Elements/CustomHeader";
 import Loader from "../Elements/Loader";
-
-type Job = {
-  title: string;
-  company: string;
-  location: string;
-  priceRange: string;
-  jobProximity: string;
-  jobHours: string;
-  experience: string;
-  skills: string[];
-  role: string;
-  department: string;
-  country: string;
-};
-
-type FilteredJobs = Job[];
-
-type IsCheckedState = {
-  [key: number]: boolean;
-};
+import {
+  IsCheckedState,
+  JobPosted,
+  Jobs,
+  SelectedFilters,
+  SelectedSearchFilters,
+} from "@/utilities/constants/typeDef";
 
 const JobBoard = ({
   mainRoute = "job-details",
@@ -56,12 +43,64 @@ const JobBoard = ({
   useEffect(() => {
     dispatch(fetchJobs()); // Only fetch if no jobs are stored
   }, [dispatch]);
-
-  const [filteredJobs, setFilteredJobs] = useState<FilteredJobs>(jobPostings);
-  const [newJobPosting, setNewJobPosting] = useState<FilteredJobs>(jobPostings);
+  useEffect(() => {
+    setFilteredJobs(jobPostings);
+  }, [jobPostings]);
+  const [filteredJobs, setFilteredJobs] = useState<Jobs[]>(jobPostings);
   const [isChecked, setIsChecked] = useState<IsCheckedState>({});
   const [showFilter, setShowFilter] = useState(false);
-useEffect(()=> setFilteredJobs(jobPostings),[jobPostings])
+  const [selectedFilters, setSelectedFilters] = useState<SelectedFilters>({
+    hours: [],
+    proximity: [],
+    experience: [],
+  });
+
+  const [searchFilters, setSearchFilters] = useState<SelectedSearchFilters>({
+    industry: "",
+    country: "",
+    skills: "",
+  });
+
+  useEffect(() => {
+    const newFilteredJobs = jobPostings.filter((job: JobPosted) => {
+      const hoursMatch = selectedFilters.hours.length
+        ? selectedFilters.hours.includes(job.jobHours)
+        : true;
+      const proximityMatch = selectedFilters.proximity.length
+        ? selectedFilters.proximity.includes(job.jobProximity)
+        : true;
+      const experienceMatch = selectedFilters.experience.length
+        ? selectedFilters.experience.includes(job.experience)
+        : true;
+      const industryMatch = searchFilters.industry
+        ? job.department
+            .toLowerCase()
+            .includes(searchFilters.industry.toLowerCase())
+        : true;
+      const countryMatch = searchFilters.country
+        ? job.country
+            .toLowerCase()
+            .includes(searchFilters.country.toLowerCase())
+        : true;
+      const skillsMatch = searchFilters.skills
+        ? job.skills
+            .map((s) => s.toLowerCase())
+            .includes(searchFilters.skills.toLowerCase())
+        : true;
+
+      return (
+        hoursMatch &&
+        proximityMatch &&
+        experienceMatch &&
+        industryMatch &&
+        countryMatch &&
+        skillsMatch
+      );
+    });
+
+    setFilteredJobs(newFilteredJobs);
+  }, [selectedFilters, searchFilters]);
+
   return (
     <section className={`  mt-0 `}>
       <CustomHeader>
@@ -81,11 +120,13 @@ useEffect(()=> setFilteredJobs(jobPostings),[jobPostings])
       </CustomHeader>
       <section className="section-container">
         <JobSearchBar
-          onNewSearch={setNewJobPosting}
-          onSearch={setFilteredJobs}
-          jobPosting={jobPostings}
+          setFilteredJobs={setFilteredJobs}
+          jobPostings={jobPostings}
           changeIsCheck={setIsChecked}
           dropdownBg={dropdownBg}
+          filteredJobs={jobPostings}
+          setSelectedFilters={setSelectedFilters}
+          setSearchFilters={setSearchFilters}
         />
         <button
           className="text-2xl text-white mb-7 sm:hidden bg-[#010D3E] w-full h-[50px] rounded-lg flex justify-center items-center shadow-md"
@@ -100,10 +141,10 @@ useEffect(()=> setFilteredJobs(jobPostings),[jobPostings])
             }`}
           >
             <Filter
-              onFilter={setFilteredJobs}
-              jobPostings={newJobPosting}
               isChecked={isChecked}
               changeIsCheck={setIsChecked}
+              selectedFilters={selectedFilters}
+              setSelectedFilters={setSelectedFilters}
             />
           </div>
           {!loading ? (

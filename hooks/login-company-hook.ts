@@ -32,7 +32,7 @@ export const useLoginCompany = () => {
       const { success, message, company, hashedRole } = response.data;
       if (success) {
         Cookies.set("accessToken", hashedRole, {
-          expiresIn: "1d",
+          expires: 1,
           secure: true,
           sameSite: "None",
         });
@@ -88,7 +88,7 @@ export const useLoginUser = () => {
       const { success, message, talent, hashedRole } = response.data;
       if (success) {
         Cookies.set("accessToken", hashedRole, {
-          expiresIn: "1d",
+          expires: 1,
           secure: true,
           sameSite: "None",
         });

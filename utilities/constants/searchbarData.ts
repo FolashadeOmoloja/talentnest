@@ -11,7 +11,7 @@ export const proximityFilter = [
   { item: "Remote", idx: 7 },
 ];
 export const experienceFilter = [
-  { item: "Junior/entry", idx: 8 },
+  { item: "Junior/Entry", idx: 8 },
   { item: "Intermediate", idx: 9 },
   { item: "Senior level", idx: 10 },
   { item: "C-level", idx: 11 },
