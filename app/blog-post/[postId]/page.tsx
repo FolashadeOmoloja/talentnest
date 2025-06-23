@@ -33,7 +33,7 @@ const BlogPage = ({ params }: { params: { postId: string } }) => {
             className="w-full h-full object-cover"
           />
         </div>
-        <main className="tracking-[1%] ">
+        <main className="tracking-[1%] blog-post">
           <article dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
         </main>
         <div className="mt-24">

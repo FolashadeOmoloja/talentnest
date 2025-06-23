@@ -137,6 +137,10 @@
   .notice-div a {
     @apply text-[#010D3E] font-semibold;
   }
+
+  .blog-post h1 {
+    @apply text-[36px] font-bold leading-[1.5];
+  }
 }
 
 @keyframes slideIn {
