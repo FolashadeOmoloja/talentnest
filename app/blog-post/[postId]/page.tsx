@@ -30,7 +30,7 @@ const BlogPage = ({ params }: { params: { postId: string } }) => {
           <img
             src={post.blogImage}
             alt="blog img"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover border-2 border-[#010D3E]"
           />
         </div>
         <main className="tracking-[1%] blog-post">
