@@ -26,11 +26,11 @@ const BlogPage = ({ params }: { params: { postId: string } }) => {
           {post?.title}
         </h3>
 
-        <div className="w-full aspect-video h-[500px] max-sm:h-[350px] rounded-2xl overflow-hidden mb-16">
+        <div className="w-full aspect-video h-[500px] max-sm:h-[350px] border-2 border-[#010D3E] rounded-2xl overflow-hidden mb-16">
           <img
             src={post.blogImage}
             alt="blog img"
-            className="w-full h-full object-cover border-2 border-[#010D3E]"
+            className="w-full h-full object-cover "
           />
         </div>
         <main className="tracking-[1%] blog-post">
