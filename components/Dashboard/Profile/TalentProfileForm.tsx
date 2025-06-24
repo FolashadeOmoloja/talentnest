@@ -59,7 +59,7 @@ const TalentProfileForm = ({
       data.mobileNo !== user.phoneNumber ||
       data.countryCode !== user.countryCode
     ) {
-      updatedData["phoneNumber"] = data?.mobileNo.replace(/^0+/, "");
+      updatedData["phoneNumber"] = data.mobileNo;
       updatedData["countryCode"] = data.countryCode;
     }
     if (data.experienceLevel !== user.experienceLevel)
