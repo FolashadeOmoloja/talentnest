@@ -42,14 +42,14 @@ const PhoneNoInput: React.FC<PhoneNoInputProps> = ({
 
   useEffect(() => {
     axios
-      .get("https://restcountries.com/v3.1/all")
+      .get("https://restcountries.com/v3.1/all?fields=name,idd,flags")
       .then((response) => {
         const countryData = response.data
           .map((country: any) => ({
             name: country.name.common,
             code:
-              country.idd.root +
-              (country.idd.suffixes ? country.idd.suffixes[0] : ""),
+              country.idd?.root +
+              (country.idd?.suffixes ? country.idd.suffixes[0] : ""),
             flag: country.flags.png,
           }))
           .filter((country: Country) => country.code) // filter out countries without codes
@@ -57,18 +57,13 @@ const PhoneNoInput: React.FC<PhoneNoInputProps> = ({
 
         setCountries(countryData);
 
-        // Check for defaultCode and set the selected country accordingly
         if (defaultCode) {
           const defaultCountry = countryData.find(
             (country: { code: string }) => country.code === defaultCode
           );
-          if (defaultCountry) {
-            setSelectedCountry(defaultCountry);
-          } else {
-            setSelectedCountry(countryData[0]); // Fallback to the first country if defaultCode is not found
-          }
+          setSelectedCountry(defaultCountry || countryData[0]);
         } else {
-          setSelectedCountry(countryData[0]); // Default to the first country if no defaultCode is provided
+          setSelectedCountry(countryData[0]);
         }
       })
       .catch((error) => console.error("Error fetching countries:", error));
