@@ -23,7 +23,7 @@ export const DownloadResumeBox = ({
     <div className="flex w-full border-b border-gray-200 py-5 max-sm:h-[120px] gap-4 slg:items-center max-slg:flex-col">
       <span className="text-[#010D3E] font-semibold basis-[30%]">{title}</span>
       <a
-        href={filename.replace("/raw/", "/auto/")}
+        href={filename?.replace("/raw/", "/auto/")}
         target="_blank"
         rel="noopener noreferrer"
         className="px-4 py-2 bg-black text-white rounded-md font-medium btn-hover hover:shadow-xl hover:bg-[#141414] flex gap-1 items-center max-w-[200px]"
