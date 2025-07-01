@@ -17,7 +17,7 @@ const DashboardNavbar = ({
   return (
     <>
       <DashboardMainNavbar NavLinks={NavLinks} company={company} />
-      <DashboardMobileNav NavLinks={NavLinks} />
+      <DashboardMobileNav NavLinks={NavLinks} company={company} />
     </>
   );
 };
