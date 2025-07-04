@@ -9,24 +9,72 @@ import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa6";
 import { AppDispatch } from "@/redux/store";
 import { fetchAppliedJobs } from "@/redux/slices/appliedJobSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import DOMPurify from "dompurify";
+import { JOB_API_END_POINT } from "@/utilities/constants/constants";
 
 const Joblisting = ({ params }: { params: { jobId: string } }) => {
-  const jobPostings = useSelector((state: any) => state.jobPosts.jobPosts);
+  // const jobPostings = useSelector((state: any) => state.jobPosts.jobPosts);
+  // const dispatch = useDispatch<AppDispatch>();
+  // const { user } = useSelector((store: any) => store.auth);
+  // const { jobIds: appliedJobIds } = useSelector(
+  //   (state: any) => state.appliedJobs
+  // );
+  // const jobData = jobPostings[parseInt(params.jobId)];
+
   const dispatch = useDispatch<AppDispatch>();
-  const { user } = useSelector((store: any) => store.auth);
+  const jobPostings = useSelector((state: any) => state.jobPosts.jobPosts);
+  const { user } = useSelector((state: any) => state.auth);
   const { jobIds: appliedJobIds } = useSelector(
     (state: any) => state.appliedJobs
   );
-  const jobData = jobPostings[parseInt(params.jobId)];
+
+  const [jobData, setJobData] = useState<any>(null);
+  const [loadingJobs, setLoadingJobs] = useState(true);
+
+  // Try to find job from Redux store first
+  useEffect(() => {
+    const localJob = jobPostings.find((job: any) => job.slug === params.jobId);
+
+    if (localJob) {
+      setJobData(localJob);
+      setLoadingJobs(false);
+    } else {
+      // If not found, fetch from backend
+      fetch(`${JOB_API_END_POINT}/getJob/${params.jobId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success) {
+            setJobData(data.job);
+          } else {
+            setJobData(null);
+          }
+        })
+        .catch((err) => {
+          console.error("Error fetching job from backend", err);
+          setJobData(null);
+        })
+        .finally(() => {
+          setLoadingJobs(false);
+        });
+    }
+  }, [jobPostings, params.jobId]);
+
+  useEffect(() => {
+    dispatch(fetchAppliedJobs());
+  }, [dispatch]);
+
   const { onSubmit: applyHandler, loading } = applyJobHandler();
-  const jobDataId = jobData._id ? jobData._id : "";
+  const jobDataId = jobData?._id ? jobData._id : "";
   const isApplied = appliedJobIds.includes(jobDataId);
 
   // Fetch applied jobs on component mount
   useEffect(() => {
     dispatch(fetchAppliedJobs());
   }, [dispatch]);
+  const sanitizedDescription = DOMPurify.sanitize(
+    jobData?.descriptionHtml ? jobData.descriptionHtml : jobData?.description
+  );
 
   return (
     <>
@@ -69,9 +117,17 @@ const Joblisting = ({ params }: { params: { jobId: string } }) => {
               <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">
                 Description
               </h2>
-              <p className="text-gray-700 text-sm leading-relaxed tracking-[0.02em]">
-                {jobData?.description}
-              </p>
+
+              <div className="tracking-[1%] blog-post text-gray-700 text-sm leading-relaxed ">
+                <div
+                  className="ql-editor template-quill description"
+                  dangerouslySetInnerHTML={{
+                    __html: sanitizedDescription
+                      ? sanitizedDescription
+                      : "No description available.",
+                  }}
+                />
+              </div>
             </div>
 
             {/* Skills */}
@@ -80,7 +136,7 @@ const Joblisting = ({ params }: { params: { jobId: string } }) => {
                 Skills
               </h2>
               <div className="flex flex-wrap gap-2">
-                {jobData.skills.map((opt: string, idx: number) => (
+                {jobData?.skills.map((opt: string, idx: number) => (
                   <span
                     key={opt}
                     className="bg-[#010D3E] text-white text-sm px-4 py-1.5 rounded-full"

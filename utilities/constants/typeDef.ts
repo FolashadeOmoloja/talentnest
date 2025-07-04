@@ -74,6 +74,7 @@ export interface Jobs {
   role: string;
   department: string;
   country: string;
+  slug?: string;
 }
 [];
 

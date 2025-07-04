@@ -8,6 +8,16 @@ import React, { useEffect, useState } from "react";
 import { FieldError, useForm } from "react-hook-form";
 import { FaArrowLeft } from "react-icons/fa6";
 import { useSelector } from "react-redux";
+import "react-quill/dist/quill.snow.css";
+import dynamic from "next/dynamic";
+const ReactQuill = dynamic(() => import("react-quill"), {
+  ssr: false,
+  loading: () => (
+    <div className="text-[#010D3E] font-semibold italic">
+      <span className="animate-pulse">Loading rich text editor...</span>
+    </div>
+  ),
+});
 
 const EditJobs = ({ openJobPage }: { openJobPage?: boolean }) => {
   const router = useRouter();
@@ -25,6 +35,16 @@ const EditJobs = ({ openJobPage }: { openJobPage?: boolean }) => {
   const [skills, setSkills] = useState<string[]>(jobPost?.skills);
   const [newSkill, setNewSkill] = useState("");
   const [filteredSuggestions, setFilteredSuggestions] = useState(filter.skills);
+  const [content, setContent] = useState("");
+
+  useEffect(() => {
+    const plainText =
+      new DOMParser().parseFromString(content, "text/html").body.textContent ||
+      "";
+    setValue("descriptionHtml", content);
+    setValue("description", plainText, { shouldValidate: true });
+  }, [content, setValue]);
+
   const addSkill = (skill: string) => {
     if (skill && !skills.includes(skill)) {
       const updatedSkills = [...skills, skill];
@@ -61,6 +81,11 @@ const EditJobs = ({ openJobPage }: { openJobPage?: boolean }) => {
 
       setValue("workMode", jobPost.jobProximity);
       setValue("workHours", jobPost.jobHours);
+      setContent(
+        jobPost.descriptionHtml ? jobPost.descriptionHtml : jobPost.description
+      );
+      setValue("descriptionHtml", jobPost.descriptionHtml);
+      setValue("description", jobPost.description);
     }
   }, [jobPost, setValue]);
 
@@ -90,6 +115,8 @@ const EditJobs = ({ openJobPage }: { openJobPage?: boolean }) => {
       updatedData["department"] = data.department.trim();
     if (data.description !== jobPost.description)
       updatedData["description"] = data.description.trim();
+    if (data.descriptionHtml !== jobPost.descriptionHtml)
+      updatedData["descriptionHtml"] = data.descriptionHtml.trim();
 
     updateJob(updatedData, jobPost._id);
   };
@@ -288,15 +315,15 @@ const EditJobs = ({ openJobPage }: { openJobPage?: boolean }) => {
                 Job Description{" "}
                 <span className="text-red-600 text-base">*</span>
               </label>
-              <textarea
-                placeholder="Enter a detailed description for your job post"
-                {...register("description", {
-                  required: validationRules.description.required,
-                })}
-                rows={10}
-                className="resize-none"
-                defaultValue={jobPost?.description}
-              />
+              <div className="h-[400px] overflow-hidden mb-4">
+                <ReactQuill
+                  theme="snow"
+                  placeholder="Enter a detailed description for your job post"
+                  value={content}
+                  onChange={setContent}
+                  className="h-[355px]"
+                />
+              </div>
               {errors.description && (
                 <span className="text-red-600 text-sm">{`${errors.description.message}`}</span>
               )}

@@ -3,11 +3,21 @@ import Dropdown from "@/components/Elements/Dropdown";
 import { useAddJob } from "@/hooks/job-hook";
 import { validationRules } from "@/utilities/constants";
 import { Loader2 } from "lucide-react";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { FieldError, useForm } from "react-hook-form";
 import { FaArrowLeft } from "react-icons/fa6";
 import { useSelector } from "react-redux";
+import "react-quill/dist/quill.snow.css";
+const ReactQuill = dynamic(() => import("react-quill"), {
+  ssr: false,
+  loading: () => (
+    <div className="text-[#010D3E] font-semibold italic">
+      <span className="animate-pulse">Loading rich text editor...</span>
+    </div>
+  ),
+});
 
 const AddJobs = () => {
   const {
@@ -21,8 +31,16 @@ const AddJobs = () => {
   const { filter } = useSelector((store: any) => store.content);
   const { onSubmit: addJob, loading } = useAddJob();
   const [skills, setSkills] = useState<string[]>([]);
-  const [newSkill, setNewSkill] = useState("");
   const [filteredSuggestions, setFilteredSuggestions] = useState(filter.skills);
+  const [newSkill, setNewSkill] = useState("");
+  const [content, setContent] = useState("");
+  useEffect(() => {
+    const plainText =
+      new DOMParser().parseFromString(content, "text/html").body.textContent ||
+      "";
+    setValue("descriptionHtml", content);
+    setValue("description", plainText, { shouldValidate: true });
+  }, [content, setValue]);
 
   const addSkill = (skill: string) => {
     if (skill && !skills.includes(skill)) {
@@ -255,18 +273,16 @@ const AddJobs = () => {
                 Job Description{" "}
                 <span className="text-red-600 text-base">*</span>
               </label>
-              <textarea
-                placeholder="Enter a detailed description for your job post"
-                {...register("description", {
-                  required: validationRules.description.required,
-                  // maxLength: {
-                  //   value: 1000,
-                  //   message: "Description cannot exceed 1000 words",
-                  // },
-                })}
-                rows={10}
-                className="resize-none"
-              />
+              <div className="h-[400px] overflow-hidden mb-4">
+                <ReactQuill
+                  theme="snow"
+                  placeholder="Enter a detailed description for your job post"
+                  value={content}
+                  onChange={setContent}
+                  className="h-[355px]"
+                />
+              </div>
+
               {errors.description && (
                 <span className="text-red-600 text-sm">{`${errors.description.message}`}</span>
               )}

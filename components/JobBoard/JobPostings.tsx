@@ -34,7 +34,7 @@ const JobPosting = ({
             <div className="flex justify-between mb-3 items-center max-xsm:gap-1">
               <h6 className="text-xl font-semibold">{item.title}</h6>
               <CTABTN
-                route={`/${mainRoute}/${idx}`}
+                route={`/${mainRoute}/${item.slug ? item.slug : idx}`}
                 CTA="View Job"
                 width="w-[138px] rounded-xl h-11 text-sm"
                 height="h-[44px]"
