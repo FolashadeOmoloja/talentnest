@@ -5,28 +5,70 @@ import Link from "next/link";
 import { applyJobHandler } from "@/hooks/job-hook";
 import { FaArrowLeft } from "react-icons/fa6";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchAppliedJobs } from "@/redux/slices/appliedJobSlice"; // Import fetch function
 import { AppDispatch } from "@/redux/store";
+import DOMPurify from "dompurify";
+import { JOB_API_END_POINT } from "@/utilities/constants/constants";
 
 const DashboardJoblisting = ({ params }: { params: { jobId: string } }) => {
   const dispatch = useDispatch<AppDispatch>();
-
-  // Fetch job postings and applied job IDs
   const jobPostings = useSelector((state: any) => state.jobPosts.jobPosts);
+  const { user } = useSelector((state: any) => state.auth);
+
+  const [jobData, setJobData] = useState<any>(null);
+  const [loadingJobs, setLoadingJobs] = useState(true);
+
   const { jobIds: appliedJobIds, loading: appliedJobsLoading } = useSelector(
     (state: any) => state.appliedJobs
   );
+  useEffect(() => {
+    dispatch(fetchAppliedJobs());
+  }, [dispatch]);
 
-  const jobData = jobPostings[parseInt(params.jobId)];
+  // Try to find job from Redux store first
+  useEffect(() => {
+    const localJob = jobPostings.find((job: any) => job.slug === params.jobId);
+
+    if (localJob) {
+      setJobData(localJob);
+      setLoadingJobs(false);
+    } else {
+      // If not found, fetch from backend
+      fetch(`${JOB_API_END_POINT}/getJob/${params.jobId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success) {
+            setJobData(data.job);
+          } else {
+            setJobData(null);
+          }
+        })
+        .catch((err) => {
+          console.error("Error fetching job from backend", err);
+          setJobData(null);
+        })
+        .finally(() => {
+          setLoadingJobs(false);
+        });
+    }
+  }, [jobPostings, params.jobId]);
+
+  useEffect(() => {
+    dispatch(fetchAppliedJobs());
+  }, [dispatch]);
+
   const { onSubmit: applyHandler, loading: applyLoading } = applyJobHandler();
-  const jobDataId = jobData?._id ?? ""; // Use optional chaining here
+  const jobDataId = jobData?._id ? jobData._id : "";
   const isApplied = appliedJobIds.includes(jobDataId);
 
   // Fetch applied jobs on component mount
   useEffect(() => {
     dispatch(fetchAppliedJobs());
   }, [dispatch]);
+  const sanitizedDescription = DOMPurify.sanitize(
+    jobData?.descriptionHtml ? jobData.descriptionHtml : jobData?.description
+  );
 
   return (
     <>
@@ -69,9 +111,16 @@ const DashboardJoblisting = ({ params }: { params: { jobId: string } }) => {
               <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">
                 Description
               </h2>
-              <p className="text-gray-700 text-sm leading-relaxed tracking-[0.02em]">
-                {jobData?.description}
-              </p>
+              <div className="tracking-[1%] blog-post text-gray-700 text-sm leading-relaxed ">
+                <div
+                  className="ql-editor template-quill description"
+                  dangerouslySetInnerHTML={{
+                    __html: sanitizedDescription
+                      ? sanitizedDescription
+                      : "No description available.",
+                  }}
+                />
+              </div>
             </div>
 
             {/* Skills */}
@@ -80,7 +129,7 @@ const DashboardJoblisting = ({ params }: { params: { jobId: string } }) => {
                 Skills
               </h2>
               <div className="flex flex-wrap gap-2">
-                {jobData.skills.map((opt: string, idx: number) => (
+                {jobData?.skills.map((opt: string, idx: number) => (
                   <span
                     key={opt}
                     className="bg-[#010D3E] text-white text-sm px-4 py-1.5 rounded-full"
