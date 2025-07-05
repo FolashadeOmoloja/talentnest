@@ -1,9 +1,9 @@
 import Logo from "@/components/Elements/Logo";
 
-const LoadingPage = () => (
+const LoadingPage = ({ fullHeight = false }: { fullHeight?: boolean }) => (
   <section
     className=" flex items-center justify-center bg-gradient-to-r from-[#EAEEFE] via-[#EAEEFE]  to-[#183dc23d]"
-    style={{ height: "calc(100svh - 112px)" }}
+    style={{ height: fullHeight ? "100vh" : "calc(100svh - 112px)" }}
   >
     <div className="flex flex-col items-center gap-6">
       {/* Logo Text */}

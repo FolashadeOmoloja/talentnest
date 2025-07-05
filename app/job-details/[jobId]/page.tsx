@@ -72,7 +72,7 @@ const Joblisting = ({ params }: { params: { jobId: string } }) => {
   return (
     <>
       {loadingJobs ? (
-        <LoadingPage />
+        <LoadingPage fullHeight />
       ) : (
         <>
           <Navbar activeItem={1} />
